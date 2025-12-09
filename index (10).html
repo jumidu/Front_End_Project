@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sklep Muzyczny</title>
+    <style>
+        :root {
+            --color-primary: #2E86AB;
+            --color-secondary: #A23B72;
+            --color-accent: #F18F01;
+            --color-bg: #F8F9FA;
+            --color-text: #1F2937;
+            --color-border: #E5E7EB;
+            --color-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: var(--color-white);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-icon {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--color-white);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav-categories {
+            background: var(--color-white);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0;
+            overflow-x: auto;
+            position: sticky;
+            top: 70px;
+            z-index: 90;
+        }
+
+        .nav-categories-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 0;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            border-bottom-color: var(--color-accent);
+            color: var(--color-accent);
+            background: rgba(241, 143, 1, 0.05);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: var(--color-primary);
+            text-align: center;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Product Card - Sketch Style */
+        .product-card {
+            background: var(--color-white);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: var(--color-accent);
+        }
+
+        .product-image-container {
+            height: 220px;
+            background: linear-gradient(135deg, rgba(46, 134, 171, 0.1), rgba(162, 59, 114, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            border-bottom: 2px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(226, 232, 240, 0.3) 10px,
+                rgba(226, 232, 240, 0.3) 20px
+            );
+            pointer-events: none;
+        }
+
+        .product-info {
+            padding: 18px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--color-accent);
+        }
+
+        .btn-add {
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add:hover {
+            background: var(--color-secondary);
+            transform: scale(1.05);
+        }
+
+        /* Badge */
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-primary);
+            color: var(--color-white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-categories-content {
+                flex-wrap: wrap;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🎵</span>
+                <span>MuzycznyShop</span>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-icon">🔍 Szukaj</button>
+                <button class="btn-icon">👤 Konto</button>
+                <button class="btn-icon">🛒 Koszyk (0)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Categories -->
+    <div class="nav-categories">
+        <div class="nav-categories-content">
+            <div class="nav-item active">Wszystkie</div>
+            <div class="nav-item">Gitary</div>
+            <div class="nav-item">Pianina</div>
+            <div class="nav-item">Keyboardy</div>
+            <div class="nav-item">Perkusja</div>
+            <div class="nav-item">Wzmacniacze</div>
+            <div class="nav-item">Akcesoria</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="section-title">🎸 Nasze Instrumenty Muzyczne</h1>
+
+        <div class="products-grid">
+            <!-- Gitary -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎸
+                    <div class="badge">Popularne</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Gitara Klasyczna</div>
+                        <div class="product-description">Idealna dla początkujących. Wysokiej jakości instrument z drewna</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">299 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gitary Elektryczne -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    ⚡
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Gitara Elektryczna</div>
+                        <div class="product-description">Doskonała dla zaawansowanych graczy. Czysty dźwięk</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">599 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pianina -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎹
+                    <div class="badge">Nowość</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Pianino 88 Klawiszy</div>
+                        <div class="product-description">Cyfrowe pianino z realnym dotykiem klawiatury</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">1 299 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyboardy -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎹
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Keyboard 61 Klawiszy</div>
+                        <div class="product-description">Przenośny keyboard z wbudowanymi efektami i rytmami</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">449 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perkusja -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🥁
+                    <div class="badge">-20%</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Zestaw Perkusyjny</div>
+                        <div class="product-description">Kompletny zestaw 5-częściowy dla perkusjonistów</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">899 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wzmacniacz -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    📻
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Wzmacniacz Gitarowy</div>
+                        <div class="product-description">Wzmacniacz 50W z dwoma kanałami i efektami</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">799 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skrzypce -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎻
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Skrzypce 4/4</div>
+                        <div class="product-description">Profesjonalne skrzypce dla początkujących i pośredniowników</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">349 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mikrofon -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎤
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Mikrofon Studyjny</div>
+                        <div class="product-description">Profesjonalny mikrofon kondensatorowy USB</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">249 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Słuchawki -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎧
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Słuchawki Audio Pro</div>
+                        <div class="product-description">Bezprzewodowe słuchawki studiowe z aktywną izolacją</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">179 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2 lata</p>
+    </div>
+
+    <script>
+        // Navigation items - make them clickable
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Add to cart button
+        document.querySelectorAll('.btn-add').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                alert(`✅ "${productName}" dodana do koszyka!`);
+            });
+        });
+    </script>
+</body>
+</html>
