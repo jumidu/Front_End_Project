@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sklep Muzyczny</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <!-- dodane -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo-icon" viewBox="0 0 16 16">
+                    <path
+                        d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
+                    <path fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z" />
+                    <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
+                </svg>
+                <!-- dodane -->
+                <span class="logo-text"> MusicStore</span> <!-- SVG BRZYDKO w kodzie  ale pozwala zmienic latwo przez css kolor itp --> 
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn-icon"><img src="images/search.svg" class="icon"> Szukaj</button> <!-- klasycznie po porstu pobranie jpg/svg z folderu images ale bez mozliowsci ustawienia/zmienienia przez css --> 
+                <button class="btn-icon">👤 Konto</button><!-- po PROSTU WKLEJONE JAKO TEKST ZASTANOWIC SIE CZY TAK ZOSTAWIAMY CZY PROBLEMY Z WYSWIETLANIEM ITP --> 
+                <button class="btn-icon">🛒 Koszyk (0)</button><!-- po PROSTU WKLEJONE JAKO TEKST ZASTANOWIC SIE CZY TAK ZOSTAWIAMY CZY PROBLEMY Z WYSWIETLANIEM ITP --> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Categories -->
+    <div class="nav-categories">
+        <div class="nav-categories-content">
+            <div class="nav-item active"><a href="index.html">Wszystkie</a></div>
+            <div class="nav-item"><a href="gitary.html">Gitary</a></div>
+            <div class="nav-item">Pianina</div>
+            <div class="nav-item">Keyboardy</div>
+            <div class="nav-item">Perkusja</div>
+            <div class="nav-item">Wzmacniacze</div>
+            <div class="nav-item">Akcesoria</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="section-title">🎸 Nasze Instrumenty Muzyczne</h1>
+
+        <div class="products-grid">
+            <!-- Gitary -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎸
+                    <div class="badge">Popularne</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Gitara Klasyczna</div>
+                        <div class="product-description">Idealna dla początkujących. Wysokiej jakości instrument z
+                            drewna</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">299 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gitary Elektryczne -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    ⚡
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Gitara Elektryczna</div>
+                        <div class="product-description">Doskonała dla zaawansowanych graczy. Czysty dźwięk</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">599 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pianina -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎹
+                    <div class="badge">Nowość</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Pianino 88 Klawiszy</div>
+                        <div class="product-description">Cyfrowe pianino z realnym dotykiem klawiatury</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">1 299 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyboardy -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎹
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Keyboard 61 Klawiszy</div>
+                        <div class="product-description">Przenośny keyboard z wbudowanymi efektami i rytmami</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">449 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perkusja -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🥁
+                    <div class="badge">-20%</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Zestaw Perkusyjny</div>
+                        <div class="product-description">Kompletny zestaw 5-częściowy dla perkusjonistów</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">899 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wzmacniacz -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    📻
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Wzmacniacz Gitarowy</div>
+                        <div class="product-description">Wzmacniacz 50W z dwoma kanałami i efektami</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">799 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skrzypce -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎻
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Skrzypce 4/4</div>
+                        <div class="product-description">Profesjonalne skrzypce dla początkujących i pośredniowników
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">349 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mikrofon -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎤
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Mikrofon Studyjny</div>
+                        <div class="product-description">Profesjonalny mikrofon kondensatorowy USB</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">249 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Słuchawki -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    🎧
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">Słuchawki Audio Pro</div>
+                        <div class="product-description">Bezprzewodowe słuchawki studiowe z aktywną izolacją</div>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">179 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2
+            lata</p>
+    </div>
+
+    <script>
+        // Navigation items - make them clickable
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function () {
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Add to cart button
+        document.querySelectorAll('.btn-add').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                alert(`✅ "${productName}" dodana do koszyka!`);
+            });
+        });
+    </script>
+</body>
+
+</html>

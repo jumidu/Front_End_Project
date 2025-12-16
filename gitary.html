@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gitary - Sklep Muzyczny</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header (identyczny jak na głównej) -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo-icon" viewBox="0 0 16 16">
+                    <path
+                        d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
+                    <path fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z" />
+                    <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
+                </svg>
+                <span class="logo-text">MusicStore</span>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn-icon"><img src="images/search.svg" class="icon"> Szukaj</button>
+                <button class="btn-icon">👤 Konto</button>
+                <button class="btn-icon">🛒 Koszyk (0)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Categories (identyczna jak na głównej) -->
+    <div class="nav-categories">
+        <div class="nav-categories-content">
+            <div class="nav-item"><a href="index.html">Wszystkie</a></div>
+            <div class="nav-item active"><a href="gitary.html">Gitary</a></div>
+            <div class="nav-item"><a href="#">Pianina</a></div>
+            <div class="nav-item"><a href="#">Keyboardy</a></div>
+            <div class="nav-item"><a href="#">Perkusja</a></div>
+            <div class="nav-item"><a href="#">Wzmacniacze</a></div>
+            <div class="nav-item"><a href="#">Akcesoria</a></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="section-title">🎸 Gitary</h1>
+
+        <!-- Kafelki kategorii gitar -->
+        <div class="category-grid">
+            <!-- Gitary Klasyczne -->
+            <div class="category-card">
+                <div class="category-image">🎸</div>
+                <div class="category-info">
+                    <h2 class="category-name">Gitary Klasyczne</h2>
+                    <p class="category-description">Idealne dla początkujących. Miękkie struny nylon, bogaty ciepły
+                        dźwięk</p>
+                    <button class="btn-category">Przejdź do oferty →</button>
+                </div>
+            </div>
+
+            <!-- Gitary Akustyczne -->
+            <div class="category-card">
+                <div class="category-image">🎸</div>
+                <div class="category-info">
+                    <h2 class="category-name">Gitary Akustyczne</h2>
+                    <p class="category-description">Uniwersalne, metalowe struny. Doskonałe do śpiewu i gry solowej</p>
+                    <button class="btn-category">Przejdź do oferty →</button>
+                </div>
+            </div>
+
+            <!-- Gitary Elektryczne -->
+            <div class="category-card">
+                 <div class="category-image"><img src="images/elektryczka.jpg" alt="Gitara Elektryczna" style="width: 100%; height: 100%; object-fit: contain;"></div>   <!-- DRUT -->
+                <div class="category-info">
+                    <h2 class="category-name">Gitary Elektryczne</h2>
+                    <p class="category-description">Najlepsze dla rockowych brzmień. Niskie naciągi, solidne brzmienie
+                    </p>
+                    <button class="btn-category" onclick="window.location.href='gitary-elektryczne.html'">
+                        Przejdź do oferty →
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (identyczny jak na głównej) -->
+    <div class="footer">
+        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2
+            lata</p>
+    </div>
+
+    <script>
+        // Navigation items - make them clickable
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function () {
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
