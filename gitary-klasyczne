@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gitary Elektryczne - Sklep Muzyczny</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo-icon" viewBox="0 0 16 16">
+                    <path
+                        d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
+                    <path fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z" />
+                    <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
+                </svg>
+                <span class="logo-text">MusicStore</span>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn-icon"><img src="images/search.svg" class="icon"> Szukaj</button>
+                <button class="btn-icon">👤 Konto</button>
+                <button class="btn-icon">🛒 Koszyk (0)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Categories -->
+    <div class="nav-categories">
+        <div class="nav-categories-content">
+            <div class="nav-item"><a href="index.html">Wszystkie</a></div>
+            <div class="nav-item active"><a href="gitary.html">Gitary</a></div>
+            <div class="nav-item"><a href="#">Pianina</a></div>
+            <div class="nav-item"><a href="#">Keyboardy</a></div>
+            <div class="nav-item"><a href="#">Perkusja</a></div>
+            <div class="nav-item"><a href="#">Wzmacniacze</a></div>
+            <div class="nav-item"><a href="#">Akcesoria</a></div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">Sklep</a> / <a href="gitary.html">Gitary</a> / <span>Elektryczne</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="products-container">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar">
+            <div class="filters-header">
+                <h3>🔍 Filtry</h3>
+            </div>
+
+            <!-- Marka -->
+            <div class="filter-group">
+                <h4 class="filter-title">MARKA</h4>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="brand" value="fender" onchange="filterProducts()">
+                        <span>Yamaha</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="brand" value="gibson" onchange="filterProducts()">
+                        <span>Admira</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="brand" value="ibanez" onchange="filterProducts()">
+                        <span>Cordoba</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="brand" value="harley-benton" onchange="filterProducts()">
+                        <span>Alhambra</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Typ -->
+            <div class="filter-group">
+                <h4 class="filter-title">TYP</h4>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="type" value="telecaster" onchange="filterProducts()">
+                        <span>Classical</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Cena -->
+            <div class="filter-group">
+                <h4 class="filter-title">CENA</h4>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="price" value="budget" onchange="filterProducts()">
+                        <span>Poniżej 1000 zł</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="price" value="mid" onchange="filterProducts()">
+                        <span>1000 - 3000 zł</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="price" value="premium" onchange="filterProducts()">
+                        <span>Powyżej 3000 zł</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Przycisk filtrów -->
+            <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            <div class="content-header">
+                <h1 class="section-title"> Gitary Klasyczne</h1>
+                <p class="result-count">Wyników: <span id="resultCount">9</span></p>
+            </div>
+
+            <div class="products-list" id="productsGrid">
+                <!-- Produkty będą wstawione przez JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Detail View -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+
+            <div class="modal-image" id="modalImage">⚡</div>
+
+            <div class="modal-info">
+                <h2 class="modal-title" id="modalTitle">Gitara Klasyczna</h2>
+                <p class="modal-specs" id="modalSpecs">Model: -</p>
+                <p class="modal-price" id="modalPrice">0 zł</p>
+
+                <p class="modal-description" id="modalDescription">Opis produktu</p>
+
+                <div class="audio-section">
+                    <label class="audio-label">🎵 Posłuchaj brzmienia</label>
+                    <audio class="audio-player" controls>
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        Twoja przeglądarka nie obsługuje odtwarzacza audio.
+                    </audio>
+                    <!-- tutaj w zaleznosci od tego jaki instrument dodamy krotka probe dzwiekowa TODO pozniej -->
+                </div>
+
+                <div class="modal-buttons">
+                    <button class="btn-modal btn-buy" onclick="addToCart()">🛒 Dodaj do koszyka</button>
+                    <button class="btn-modal btn-close" onclick="closeModal()">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2
+            lata</p>
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, name: 'Yamaha C40', brand: 'Yamaha', type: 'Classical', price: 649, specs: 'Model: C40', desc: 'Bardzo popularna gitara klasyczna dla początkujących. Ciepłe brzmienie i wygodny gryf.', icon: '🎵' },
+            { id: 2, name: 'Yamaha CG122MS', brand: 'Yamaha', type: 'Classical', price: 1199, specs: 'Model: CG Series', desc: 'Solidna gitara klasyczna z matowym wykończeniem. Idealna do nauki i gry domowej.', icon: '🎵' },
+            { id: 3, name: 'Admira Alba', brand: 'Admira', type: 'Classical', price: 699, specs: 'Model: Alba', desc: 'Hiszpańska gitara klasyczna dla początkujących. Lekka konstrukcja i miękkie struny.', icon: '🎵' },
+            { id: 4, name: 'Admira Juanita', brand: 'Admira', type: 'Classical', price: 1399, specs: 'Model: Juanita', desc: 'Ręcznie wykonana gitara klasyczna o zrównoważonym brzmieniu. Świetna do szkoły muzycznej.', icon: '🎵' },
+            { id: 5, name: 'Cordoba C3M', brand: 'Cordoba', type: 'Classical', price: 1099, specs: 'Model: C3M', desc: 'Nowoczesna gitara klasyczna inspirowana tradycją hiszpańską. Bardzo dobra projekcja dźwięku.', icon: '🎵' },
+            { id: 6, name: 'Cordoba C5', brand: 'Cordoba', type: 'Classical', price: 1799, specs: 'Model: C5', desc: 'Wyższa półka gitar klasycznych. Lity top i bogate, dynamiczne brzmienie.', icon: '🎵' },
+            { id: 7, name: 'Alhambra 1C', brand: 'Alhambra', type: 'Classical', price: 1599, specs: 'Model: 1C', desc: 'Profesjonalna gitara klasyczna produkowana w Hiszpanii. Idealna do nauki i koncertów.', icon: '🎵' },
+            { id: 8, name: 'Alhambra 3C', brand: 'Alhambra', type: 'Classical', price: 2399, specs: 'Model: 3C', desc: 'Świetnie wyważone brzmienie i wysoka jakość wykonania. Bardzo popularny model koncertowy.', icon: '🎵' },
+            { id: 9, name: 'Alhambra 5P', brand: 'Alhambra', type: 'Classical', price: 3499, specs: 'Model: 5P', desc: 'Gitara klasyczna klasy premium z litym drewnem. Bogate, głębokie brzmienie dla zaawansowanych.', icon: '🎵' }
+        ];
+
+        
+
+        function displayProducts(filtered) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            filtered.forEach(product => {
+                const item = document.createElement('div');
+                item.className = 'product-list-item';
+                item.innerHTML = `
+                   <img src="${product.image}" alt="${product.name}" class="product-list-image" style="object-fit: cover;">
+                    <div class="product-list-info">
+                        <div class="product-list-brand">${product.brand}</div>
+                        <h3 class="product-list-name">${product.name}</h3>
+                        <div class="product-list-price">${product.price} zł</div>
+                        <button class="btn-details" onclick="openModal(${product.id})">Szczegóły</button>
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
+
+            document.getElementById('resultCount').textContent = filtered.length;
+        }
+
+        function filterProducts() {
+            const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked'))
+                .map(cb => cb.value);
+
+            const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked'))
+                .map(cb => cb.value);
+
+            const selectedPrices = Array.from(document.querySelectorAll('input[name="price"]:checked'))
+                .map(cb => cb.value);
+
+            let filtered = products;
+
+            if (selectedBrands.length > 0) {
+                filtered = filtered.filter(p => selectedBrands.some(b => p.brand.toLowerCase().includes(b.split('-').join(' '))));
+            }
+
+            if (selectedTypes.length > 0) {
+                filtered = filtered.filter(p => selectedTypes.some(t => p.type.toLowerCase() === t.replace('-', ' ')));
+            }
+
+            if (selectedPrices.length > 0) {
+                filtered = filtered.filter(p => {
+                    if (selectedPrices.includes('budget') && p.price < 1000) return true;
+                    if (selectedPrices.includes('mid') && p.price >= 1000 && p.price <= 3000) return true;
+                    if (selectedPrices.includes('premium') && p.price > 3000) return true;
+                    return false;
+                });
+            }
+
+            displayProducts(filtered);
+        }
+
+        function openModal(productId) {
+            const product = products.find(p => p.id === productId);
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
+            document.getElementById('modalPrice').textContent = product.price + ' zł';
+            document.getElementById('modalDescription').textContent = product.desc;
+
+            // Wyświetl zdjęcie JPG w modalu
+            document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
+
+            document.getElementById('productModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('show');
+        }
+
+        function addToCart() {
+            const productName = document.getElementById('modalTitle').textContent;
+            alert(`✅ "${productName}" dodana do koszyka!`);
+            closeModal();
+        }
+
+        function clearFilters() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            filterProducts();
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('productModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        displayProducts(products);
+    </script>
+</body>
+
+</html>
