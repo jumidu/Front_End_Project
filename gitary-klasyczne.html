@@ -63,19 +63,19 @@
                 <h4 class="filter-title">MARKA</h4>
                 <div class="filter-options">
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="fender" onchange="filterProducts()">
+                        <input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()">
                         <span>Yamaha</span>
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="gibson" onchange="filterProducts()">
+                        <input type="checkbox" name="brand" value="admira" onchange="filterProducts()">
                         <span>Admira</span>
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="ibanez" onchange="filterProducts()">
+                        <input type="checkbox" name="brand" value="cordoba" onchange="filterProducts()">
                         <span>Cordoba</span>
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="harley-benton" onchange="filterProducts()">
+                        <input type="checkbox" name="brand" value="alhambra" onchange="filterProducts()">
                         <span>Alhambra</span>
                     </label>
                 </div>
@@ -86,8 +86,20 @@
                 <h4 class="filter-title">TYP</h4>
                 <div class="filter-options">
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="telecaster" onchange="filterProducts()">
-                        <span>Classical</span>
+                        <input type="checkbox" name="type" value="4/4" onchange="filterProducts()">
+                        <span>4/4</span>
+                    </label>
+                </div>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="type" value="3/4" onchange="filterProducts()">
+                        <span>3/4</span>
+                    </label>
+                </div>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" name="type" value="1/4" onchange="filterProducts()">
+                        <span>1/4</span>
                     </label>
                 </div>
             </div>
@@ -167,15 +179,15 @@
 
     <script>
         const products = [
-            { id: 1, name: 'Yamaha C40', brand: 'Yamaha', type: 'Classical', price: 649, specs: 'Model: C40', desc: 'Bardzo popularna gitara klasyczna dla początkujących. Ciepłe brzmienie i wygodny gryf.', icon: '🎵' },
-            { id: 2, name: 'Yamaha CG122MS', brand: 'Yamaha', type: 'Classical', price: 1199, specs: 'Model: CG Series', desc: 'Solidna gitara klasyczna z matowym wykończeniem. Idealna do nauki i gry domowej.', icon: '🎵' },
-            { id: 3, name: 'Admira Alba', brand: 'Admira', type: 'Classical', price: 699, specs: 'Model: Alba', desc: 'Hiszpańska gitara klasyczna dla początkujących. Lekka konstrukcja i miękkie struny.', icon: '🎵' },
-            { id: 4, name: 'Admira Juanita', brand: 'Admira', type: 'Classical', price: 1399, specs: 'Model: Juanita', desc: 'Ręcznie wykonana gitara klasyczna o zrównoważonym brzmieniu. Świetna do szkoły muzycznej.', icon: '🎵' },
-            { id: 5, name: 'Cordoba C3M', brand: 'Cordoba', type: 'Classical', price: 1099, specs: 'Model: C3M', desc: 'Nowoczesna gitara klasyczna inspirowana tradycją hiszpańską. Bardzo dobra projekcja dźwięku.', icon: '🎵' },
-            { id: 6, name: 'Cordoba C5', brand: 'Cordoba', type: 'Classical', price: 1799, specs: 'Model: C5', desc: 'Wyższa półka gitar klasycznych. Lity top i bogate, dynamiczne brzmienie.', icon: '🎵' },
-            { id: 7, name: 'Alhambra 1C', brand: 'Alhambra', type: 'Classical', price: 1599, specs: 'Model: 1C', desc: 'Profesjonalna gitara klasyczna produkowana w Hiszpanii. Idealna do nauki i koncertów.', icon: '🎵' },
-            { id: 8, name: 'Alhambra 3C', brand: 'Alhambra', type: 'Classical', price: 2399, specs: 'Model: 3C', desc: 'Świetnie wyważone brzmienie i wysoka jakość wykonania. Bardzo popularny model koncertowy.', icon: '🎵' },
-            { id: 9, name: 'Alhambra 5P', brand: 'Alhambra', type: 'Classical', price: 3499, specs: 'Model: 5P', desc: 'Gitara klasyczna klasy premium z litym drewnem. Bogate, głębokie brzmienie dla zaawansowanych.', icon: '🎵' }
+            { id: 1, name: 'Yamaha C40', brand: 'Yamaha', type: '4/4', price: 649, specs: 'Model: C40', desc: 'Bardzo popularna gitara klasyczna dla początkujących. Ciepłe brzmienie i wygodny gryf.', image: 'images/yamaha_c40' },
+            { id: 2, name: 'Yamaha CS 40', brand: 'Yamaha', type: '3/4', price: 1199, specs: 'Model: CS 40', desc: 'Solidna gitara klasyczna z matowym wykończeniem. Idealna do nauki i gry domowej.', image: 'images/yamaha_cs_40' },
+            { id: 3, name: 'Admira Alba', brand: 'Admira', type: '1/4', price: 699, specs: 'Model: Alba', desc: 'Hiszpańska gitara klasyczna dla początkujących. Lekka konstrukcja i miękkie struny.', iimage: 'images/admira_alba' },
+            { id: 4, name: 'Admira Juanita', brand: 'Admira', type: '4/4', price: 1399, specs: 'Model: Juanita', desc: 'Ręcznie wykonana gitara klasyczna o zrównoważonym brzmieniu. Świetna do szkoły muzycznej.', image: 'images/admira_juanita' },
+            { id: 5, name: 'Cordoba Protage C1', brand: 'Cordoba', type: '4/4', price: 1099, specs: 'Model: Protage C1', desc: 'Nowoczesna gitara klasyczna inspirowana tradycją hiszpańską. Bardzo dobra projekcja dźwięku.', image: 'images/cordoba_protage_c1' },
+            { id: 6, name: 'Cordoba Protage C1M CE', brand: 'Cordoba', type: '4/4', price: 1799, specs: 'Model: Protage C1M CE', desc: 'Wyższa półka gitar klasycznych. Lity top i bogate, dynamiczne brzmienie.', image: 'images/cordoba_protage_c1m_ce'},
+            { id: 7, name: 'Alhambra 2C', brand: 'Alhambra', type: '4/4', price: 1599, specs: 'Model: 2C', desc: 'Profesjonalna gitara klasyczna produkowana w Hiszpanii. Idealna do nauki i koncertów.', image: 'images/alhambra_2c' },
+            { id: 8, name: 'Alhambra 3C', brand: 'Alhambra', type: '4/4', price: 2399, specs: 'Model: 3C', desc: 'Świetnie wyważone brzmienie i wysoka jakość wykonania. Bardzo popularny model koncertowy.', iimage: 'images/alhambra_3c' },
+            { id: 9, name: 'Alhambra 5P', brand: 'Alhambra', type: '4/4', price: 3499, specs: 'Model: 5P', desc: 'Gitara klasyczna klasy premium z litym drewnem. Bogate, głębokie brzmienie dla zaawansowanych.', iimage: 'images/alhambra_5p' }
         ];
 
         
