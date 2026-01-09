@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gitary Klasyczne - Sklep Muzyczny</title>
+    <title>Keyboardy - Sklep Muzyczny</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -34,9 +34,9 @@
     <div class="nav-categories">
         <div class="nav-categories-content">
             <div class="nav-item"><a href="index.html">Wszystkie</a></div>
-            <div class="nav-item active"><a href="gitary.html">Gitary</a></div>
+            <div class="nav-item"><a href="gitary.html">Gitary</a></div>
             <div class="nav-item"><a href="#">Pianina</a></div>
-            <div class="nav-item"><a href="keyboardy.html">Keyboardy</a></div>
+            <div class="nav-item active"><a href="keyboardy.html">Keyboardy</a></div>
             <div class="nav-item"><a href="#">Perkusja</a></div>
             <div class="nav-item"><a href="#">Wzmacniacze</a></div>
             <div class="nav-item"><a href="#">Akcesoria</a></div>
@@ -46,7 +46,7 @@
     <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="breadcrumb-content">
-            <a href="index.html">Sklep</a> / <a href="gitary.html">Gitary</a> / <span>Klasyczne</span>
+            <a href="index.html">Sklep</a> / <a href="keyboardy.html">Keyboardy</a> 
         </div>
     </div>
 
@@ -63,43 +63,33 @@
                 <h4 class="filter-title">MARKA</h4>
                 <div class="filter-options">
                     <label class="filter-checkbox">
+                        <input type="checkbox" name="brand" value="casio" onchange="filterProducts()">
+                        <span>Casio</span>
+                    </label>
+                    <label class="filter-checkbox">
                         <input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()">
                         <span>Yamaha</span>
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="admira" onchange="filterProducts()">
-                        <span>Admira</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="cordoba" onchange="filterProducts()">
-                        <span>Cordoba</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="alhambra" onchange="filterProducts()">
-                        <span>Alhambra</span>
+                        <input type="checkbox" name="brand" value="korg" onchange="filterProducts()">
+                        <span>Korg</span>
                     </label>
                 </div>
             </div>
 
-            <!-- Typ -->
+            <!-- Klawiatura -->
             <div class="filter-group">
-                <h4 class="filter-title">TYP</h4>
+                <h4 class="filter-title">KLAWIATURA</h4>
                 <div class="filter-options">
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="4/4" onchange="filterProducts()">
-                        <span>4/4</span>
+                        <input type="checkbox" name="type" value="dynamiczna" onchange="filterProducts()">
+                        <span>Dynamiczna</span>
                     </label>
                 </div>
                 <div class="filter-options">
                     <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="3/4" onchange="filterProducts()">
-                        <span>3/4</span>
-                    </label>
-                </div>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="1/4" onchange="filterProducts()">
-                        <span>1/4</span>
+                        <input type="checkbox" name="type" value="bez dynamiki" onchange="filterProducts()">
+                        <span>Bez dynamiki</span>
                     </label>
                 </div>
             </div>
@@ -130,7 +120,7 @@
         <!-- Main Content -->
         <main class="content-area">
             <div class="content-header">
-                <h1 class="section-title"> Gitary Klasyczne</h1>
+                <h1 class="section-title"> Klasyczne</h1>
                 <p class="result-count">Wyników: <span id="resultCount">9</span></p>
             </div>
 
@@ -148,7 +138,7 @@
             <div class="modal-image" id="modalImage">⚡</div>
 
             <div class="modal-info">
-                <h2 class="modal-title" id="modalTitle">Gitara Klasyczna</h2>
+                <h2 class="modal-title" id="modalTitle">Keyboard</h2>
                 <p class="modal-specs" id="modalSpecs">Model: -</p>
                 <p class="modal-price" id="modalPrice">0 zł</p>
 
@@ -179,15 +169,15 @@
 
     <script>
         const products = [
-            { id: 1, name: 'Yamaha C40', brand: 'Yamaha', type: '4/4', price: 649, specs: 'Model: C40', desc: 'Bardzo popularna gitara klasyczna dla początkujących. Ciepłe brzmienie i wygodny gryf.', image: 'images/yamaha_c40.jpg' },
-            { id: 2, name: 'Yamaha CS 40', brand: 'Yamaha', type: '3/4', price: 1199, specs: 'Model: CS 40', desc: 'Solidna gitara klasyczna z matowym wykończeniem. Idealna do nauki i gry domowej.', image: 'images/yamaha_cs_40.jpg' },
-            { id: 3, name: 'Admira Alba', brand: 'Admira', type: '1/4', price: 699, specs: 'Model: Alba', desc: 'Hiszpańska gitara klasyczna dla początkujących. Lekka konstrukcja i miękkie struny.', image: 'images/admira_alba.jpg' },
-            { id: 4, name: 'Admira Juanita', brand: 'Admira', type: '4/4', price: 1399, specs: 'Model: Juanita', desc: 'Ręcznie wykonana gitara klasyczna o zrównoważonym brzmieniu. Świetna do szkoły muzycznej.', image: 'images/admira_juanita.jpg' },
-            { id: 5, name: 'Cordoba Protage C1', brand: 'Cordoba', type: '4/4', price: 1099, specs: 'Model: Protage C1', desc: 'Nowoczesna gitara klasyczna inspirowana tradycją hiszpańską. Bardzo dobra projekcja dźwięku.', image: 'images/cordoba_protage_c1.jpg' },
-            { id: 6, name: 'Cordoba Protage C1M CE', brand: 'Cordoba', type: '4/4', price: 1799, specs: 'Model: Protage C1M CE', desc: 'Wyższa półka gitar klasycznych. Lity top i bogate, dynamiczne brzmienie.', image: 'images/cordoba_protege_c1m_ce.jpg'},
-            { id: 7, name: 'Alhambra 2C', brand: 'Alhambra', type: '4/4', price: 1599, specs: 'Model: 2C', desc: 'Profesjonalna gitara klasyczna produkowana w Hiszpanii. Idealna do nauki i koncertów.', image: 'images/alhambra_2c.jpg' },
-            { id: 8, name: 'Alhambra 3C', brand: 'Alhambra', type: '4/4', price: 2399, specs: 'Model: 3C', desc: 'Świetnie wyważone brzmienie i wysoka jakość wykonania. Bardzo popularny model koncertowy.', image: 'images/alhambra_3c.jpg' },
-            { id: 9, name: 'Alhambra 5P', brand: 'Alhambra', type: '4/4', price: 3499, specs: 'Model: 5P', desc: 'Gitara klasyczna klasy premium z litym drewnem. Bogate, głębokie brzmienie dla zaawansowanych.', image: 'images/alhambra_5p.jpg' }
+            { id: 1, name: 'Yamaha PSR E283', brand: 'Yamaha', type: 'Bez dynamiki', price: 550, specs: 'Model: PSR E283', desc: 'Keyboard przeznaczony dla dzieci oraz początkujących, który wprowadzi Cię w świat wspaniałych emocji i zabawy.', image: 'images/yamaha-psr-e283.webp' },
+            { id: 2, name: 'Yamaha PSS E30', brand: 'Yamaha', type: 'Bez dynamiki', price: 300, specs: 'Model: PSS E30', desc: 'Bardzo dobre brzmienie, oraz klawiatura małych rozmiarów dopasowana pod małe rączki.', image: 'images/yamaha-pss-e30.webp' },
+            { id: 3, name: 'Yamaha PSR SX600', brand: 'Yamaha', type: 'Dynamiczna', price: 2899, specs: 'Model: PSR SX600', desc: 'Profesjonalny keyboard oferujący zdumiewający wachlarz głosów, trybów pracy, narzędzi.', image: 'images/yamaha-psr-sx600.webp' },
+            { id: 4, name: 'Korg EK 50', brand: 'Korg', type: 'Dynamiczna', price: 1600, specs: 'Model: EK 50', desc: 'Przystępny cenowo, pełnowymiarowy 61-klawiszowy aranżer Korga.', image: 'images/korg-ek-50.webp' },
+            { id: 5, name: 'Korg PA5X 76', brand: 'Korg', type: 'Dynamiczna', price: 15550, specs: 'Model: PA5X 76', desc: 'Rewolucyjny sprzęt z morzem możliwości, zamknięte w świetnie zaprojektowanej obudowie.', image: 'images/Korg-PA-5X-76-Oriental.webp' },
+            { id: 6, name: 'Korg PA 700', brand: 'Korg', type: 'Dynamiczna', price: 8999, specs: 'Model: PA 700', desc: 'Łączy kompaktową konstrukcję z niesamowicie naturalnymi dźwiękami i szeroką gamą stylów muzycznych.', image: 'images/korg-pa700.webp'},
+            { id: 7, name: 'Casio SA 50', brand: 'Casio', type: 'Bez dynamiki', price: 299, specs: 'Model: SA 50', desc: 'Podstawowy sprzęt dla dzieci lub do nauki.', image: 'images/casio-sa-50.webp' },
+            { id: 8, name: 'Casio CTS1 BK', brand: 'Casio', type: 'Dynamiczna', price: 990, specs: 'Model: CTS1 BK', desc: 'Nowoczesna wersja kultowego Casiotone CT-201 z lat 80.', image: 'images/casio-ct-s1-bk.webp' },
+            { id: 9, name: 'Casio CTS200 RD', brand: 'Casio', type: 'Bez dynamiki', price: 650, specs: 'Model: CTS200 RD', desc: 'Posiadający 61 klawiszy i wygodny uchwyt do noszenia model CT-S200 zapewnia wspaniałe doznania.', image: 'images/casio-ct-s200-rd.webp' }
         ];
 
         
