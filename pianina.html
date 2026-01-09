@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gitary Klasyczne - Sklep Muzyczny</title>
+    <title>Pianina - Sklep Muzyczny</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -34,8 +34,8 @@
     <div class="nav-categories">
         <div class="nav-categories-content">
             <div class="nav-item"><a href="index.html">Wszystkie</a></div>
-            <div class="nav-item active"><a href="gitary.html">Gitary</a></div>
-            <div class="nav-item"><a href="pianina.html">Pianina</a></div>
+            <div class="nav-item"><a href="gitary.html">Gitary</a></div>
+            <div class="nav-item active"><a href="pianina.html">Pianina</a></div>
             <div class="nav-item"><a href="keyboardy.html">Keyboardy</a></div>
             <div class="nav-item"><a href="#">Perkusja</a></div>
             <div class="nav-item"><a href="#">Wzmacniacze</a></div>
@@ -46,7 +46,7 @@
     <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="breadcrumb-content">
-            <a href="index.html">Sklep</a> / <a href="gitary.html">Gitary</a> / <span>Klasyczne</span>
+            <a href="index.html">Sklep</a> / <a href="pianina.html">Pianina</a> 
         </div>
     </div>
 
@@ -63,43 +63,12 @@
                 <h4 class="filter-title">MARKA</h4>
                 <div class="filter-options">
                     <label class="filter-checkbox">
+                        <input type="checkbox" name="brand" value="kawai" onchange="filterProducts()">
+                        <span>Kawai</span>
+                    </label>
+                    <label class="filter-checkbox">
                         <input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()">
                         <span>Yamaha</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="admira" onchange="filterProducts()">
-                        <span>Admira</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="cordoba" onchange="filterProducts()">
-                        <span>Cordoba</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="alhambra" onchange="filterProducts()">
-                        <span>Alhambra</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Typ -->
-            <div class="filter-group">
-                <h4 class="filter-title">TYP</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="4/4" onchange="filterProducts()">
-                        <span>4/4</span>
-                    </label>
-                </div>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="3/4" onchange="filterProducts()">
-                        <span>3/4</span>
-                    </label>
-                </div>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="1/4" onchange="filterProducts()">
-                        <span>1/4</span>
                     </label>
                 </div>
             </div>
@@ -110,15 +79,15 @@
                 <div class="filter-options">
                     <label class="filter-checkbox">
                         <input type="checkbox" name="price" value="budget" onchange="filterProducts()">
-                        <span>Poniżej 1000 zł</span>
+                        <span>Poniżej 60000 zł</span>
                     </label>
                     <label class="filter-checkbox">
                         <input type="checkbox" name="price" value="mid" onchange="filterProducts()">
-                        <span>1000 - 3000 zł</span>
+                        <span>60000 - 180000 zł</span>
                     </label>
                     <label class="filter-checkbox">
                         <input type="checkbox" name="price" value="premium" onchange="filterProducts()">
-                        <span>Powyżej 3000 zł</span>
+                        <span>Powyżej 180000 zł</span>
                     </label>
                 </div>
             </div>
@@ -130,8 +99,8 @@
         <!-- Main Content -->
         <main class="content-area">
             <div class="content-header">
-                <h1 class="section-title"> Gitary Klasyczne</h1>
-                <p class="result-count">Wyników: <span id="resultCount">9</span></p>
+                <h1 class="section-title"> Pianina</h1>
+                <p class="result-count">Wyników: <span id="resultCount">4</span></p>
             </div>
 
             <div class="products-list" id="productsGrid">
@@ -148,7 +117,7 @@
             <div class="modal-image" id="modalImage">⚡</div>
 
             <div class="modal-info">
-                <h2 class="modal-title" id="modalTitle">Gitara Klasyczna</h2>
+                <h2 class="modal-title" id="modalTitle">Pianino</h2>
                 <p class="modal-specs" id="modalSpecs">Model: -</p>
                 <p class="modal-price" id="modalPrice">0 zł</p>
 
@@ -179,15 +148,10 @@
 
     <script>
         const products = [
-            { id: 1, name: 'Yamaha C40', brand: 'Yamaha', type: '4/4', price: 649, specs: 'Model: C40', desc: 'Bardzo popularna gitara klasyczna dla początkujących. Ciepłe brzmienie i wygodny gryf.', image: 'images/yamaha_c40.jpg' },
-            { id: 2, name: 'Yamaha CS 40', brand: 'Yamaha', type: '3/4', price: 1199, specs: 'Model: CS 40', desc: 'Solidna gitara klasyczna z matowym wykończeniem. Idealna do nauki i gry domowej.', image: 'images/yamaha_cs_40.jpg' },
-            { id: 3, name: 'Admira Alba', brand: 'Admira', type: '1/4', price: 699, specs: 'Model: Alba', desc: 'Hiszpańska gitara klasyczna dla początkujących. Lekka konstrukcja i miękkie struny.', image: 'images/admira_alba.jpg' },
-            { id: 4, name: 'Admira Juanita', brand: 'Admira', type: '4/4', price: 1399, specs: 'Model: Juanita', desc: 'Ręcznie wykonana gitara klasyczna o zrównoważonym brzmieniu. Świetna do szkoły muzycznej.', image: 'images/admira_juanita.jpg' },
-            { id: 5, name: 'Cordoba Protage C1', brand: 'Cordoba', type: '4/4', price: 1099, specs: 'Model: Protage C1', desc: 'Nowoczesna gitara klasyczna inspirowana tradycją hiszpańską. Bardzo dobra projekcja dźwięku.', image: 'images/cordoba_protage_c1.jpg' },
-            { id: 6, name: 'Cordoba Protage C1M CE', brand: 'Cordoba', type: '4/4', price: 1799, specs: 'Model: Protage C1M CE', desc: 'Wyższa półka gitar klasycznych. Lity top i bogate, dynamiczne brzmienie.', image: 'images/cordoba_protege_c1m_ce.jpg'},
-            { id: 7, name: 'Alhambra 2C', brand: 'Alhambra', type: '4/4', price: 1599, specs: 'Model: 2C', desc: 'Profesjonalna gitara klasyczna produkowana w Hiszpanii. Idealna do nauki i koncertów.', image: 'images/alhambra_2c.jpg' },
-            { id: 8, name: 'Alhambra 3C', brand: 'Alhambra', type: '4/4', price: 2399, specs: 'Model: 3C', desc: 'Świetnie wyważone brzmienie i wysoka jakość wykonania. Bardzo popularny model koncertowy.', image: 'images/alhambra_3c.jpg' },
-            { id: 9, name: 'Alhambra 5P', brand: 'Alhambra', type: '4/4', price: 3499, specs: 'Model: 5P', desc: 'Gitara klasyczna klasy premium z litym drewnem. Bogate, głębokie brzmienie dla zaawansowanych.', image: 'images/alhambra_5p.jpg' }
+            { id: 1, name: 'Yamaha GB1K PE', brand: 'Yamaha', type: 'Pianino', price: 52000, specs: 'Model: GB1K PE', desc: 'Akustyczny fortepian typu „baby grand” o długości 151 cm, łączący brzmienie zbliżone do większych fortepianów z kompaktowym rozmiarem.', image: 'images/yamaha-gb1k-pe.webp' },
+            { id: 2, name: 'Kawai GL10 WH', brand: 'Kawai', type: 'Pianino', price: 51000, specs: 'Model: GL10 WH', desc: 'Przystępny cenowo fortepian, szanowanej na całym świecie marki.', image: 'images/kawai-gl-10-wh.webp' },
+            { id: 3, name: 'Kawai GX 2 WH/P', brand: 'Kawai', type: 'Pianino', price: 125000, specs: 'Model: GX 2 WH/P', desc: 'Wykonany z najwyższą starannością instrument, który w 2017 roku otrzymał nagrodę "Product Excellence Award".', image: 'images/Kawai-GX-2-W-BWP.webp' },
+            { id: 4, name: 'Kawai GX 7', brand: 'Kawai', type: 'Pianino', price: 220000, specs: 'Model: GX 7', desc: 'Zaprojektowany z myślą o najbardziej wymagających pianistach i salach koncertowych.', image: 'images/kawai-gx-7.webp' }
         ];
 
         
@@ -236,9 +200,9 @@
 
             if (selectedPrices.length > 0) {
                 filtered = filtered.filter(p => {
-                    if (selectedPrices.includes('budget') && p.price < 1000) return true;
-                    if (selectedPrices.includes('mid') && p.price >= 1000 && p.price <= 3000) return true;
-                    if (selectedPrices.includes('premium') && p.price > 3000) return true;
+                    if (selectedPrices.includes('budget') && p.price < 60000) return true;
+                    if (selectedPrices.includes('mid') && p.price >= 60000 && p.price <= 180000) return true;
+                    if (selectedPrices.includes('premium') && p.price > 180000) return true;
                     return false;
                 });
             }
