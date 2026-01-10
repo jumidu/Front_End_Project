@@ -21,13 +21,21 @@
                     <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
                 </svg>
                 <!-- dodane -->
-                <span class="logo-text"> MusicStore</span> <!-- SVG BRZYDKO w kodzie  ale pozwala zmienic latwo przez css kolor itp --> 
+                <span class="logo-text"> MusicStore</span>
+                <!-- SVG BRZYDKO w kodzie  ale pozwala zmienic latwo przez css kolor itp -->
             </div>
 
             <div class="nav-buttons">
-                <button class="btn-icon"><img src="images/search.svg" class="icon"> Szukaj</button> <!-- klasycznie po porstu pobranie jpg/svg z folderu images ale bez mozliowsci ustawienia/zmienienia przez css --> 
-                <button class="btn-icon">👤 Konto</button><!-- po PROSTU WKLEJONE JAKO TEKST ZASTANOWIC SIE CZY TAK ZOSTAWIAMY CZY PROBLEMY Z WYSWIETLANIEM ITP --> 
-                <button class="btn-icon">🛒 Koszyk (0)</button><!-- po PROSTU WKLEJONE JAKO TEKST ZASTANOWIC SIE CZY TAK ZOSTAWIAMY CZY PROBLEMY Z WYSWIETLANIEM ITP --> 
+                <button class="btn-icon"><img src="images/search.svg" class="icon"> Szukaj</button>
+                <!-- klasycznie po porstu pobranie jpg/svg z folderu images ale bez mozliowsci ustawienia/zmienienia przez css -->
+                <button class="btn-icon">👤
+                    Konto</button><!-- po PROSTU WKLEJONE JAKO TEKST ZASTANOWIC SIE CZY TAK ZOSTAWIAMY CZY PROBLEMY Z WYSWIETLANIEM ITP -->
+                <button class="btn-icon">🛒 Koszyk
+                    (0)</button><!-- po PROSTU WKLEJONE JAKO TEKST ZASTANOWIC SIE CZY TAK ZOSTAWIAMY CZY PROBLEMY Z WYSWIETLANIEM ITP -->
+                    
+                    <!-- dark mode -->
+                <button class="btn-icon" onclick="toggleDarkMode()">🌙</button>
+
             </div>
         </div>
     </div>
@@ -35,8 +43,8 @@
     <!-- Navigation Categories -->
     <div class="nav-categories">
         <div class="nav-categories-content">
-            <div class="nav-item active"><a href="index.html">Wszystkie</a></div>
-            <div class="nav-item"><a href="gitary.html">Gitary</a></div>
+            <a href="index.html" class="nav-item active">Wszystkie</a>
+            <a href="gitary.html" class="nav-item ">Gitary</a>
             <div class="nav-item">Pianina</div>
             <div class="nav-item">Keyboardy</div>
             <div class="nav-item">Perkusja</div>
@@ -234,6 +242,23 @@
             });
         });
     </script>
+    <!-- <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+
+            localStorage.setItem(
+                'darkMode',
+                document.body.classList.contains('dark-mode')
+            );
+        }
+
+        // automatyczne wczytanie zapamiętanego trybu
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script> -->
+
+    <script src="theme.js"></script>
 </body>
 
 </html>

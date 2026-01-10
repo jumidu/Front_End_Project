@@ -26,6 +26,8 @@
                 <button class="btn-icon"><img src="images/search.svg" class="icon"> Szukaj</button>
                 <button class="btn-icon">👤 Konto</button>
                 <button class="btn-icon">🛒 Koszyk (0)</button>
+                <!-- dark mode -->
+                <button class="btn-icon" onclick="toggleDarkMode()">🌙</button>
             </div>
         </div>
     </div>
@@ -33,8 +35,8 @@
     <!-- Navigation Categories -->
     <div class="nav-categories">
         <div class="nav-categories-content">
-            <div class="nav-item"><a href="index.html">Wszystkie</a></div>
-            <div class="nav-item active"><a href="gitary.html">Gitary</a></div>
+            <a href="index.html" class="nav-item ">Wszystkie</a>
+            <a href="gitary.html" class="nav-item active">Gitary</a>
             <div class="nav-item"><a href="#">Pianina</a></div>
             <div class="nav-item"><a href="#">Keyboardy</a></div>
             <div class="nav-item"><a href="#">Perkusja</a></div>
@@ -135,6 +137,16 @@
         <main class="content-area">
             <div class="content-header">
                 <h1 class="section-title">⚡ Gitary Elektryczne</h1>
+
+                <div class="sort-bar">
+                    <label for="sortPrice">Sortuj wg ceny:</label>
+                    <select id="sortPrice" onchange="filterProducts()">
+                        <option value="">Domyślnie</option>
+                        <option value="asc">Cena rosnąco</option>
+                        <option value="desc">Cena malejąco</option>
+                    </select>
+                </div>
+
                 <p class="result-count">Wyników: <span id="resultCount">9</span></p>
             </div>
 
@@ -161,7 +173,7 @@
                 <div class="audio-section">
                     <label class="audio-label">🎵 Posłuchaj brzmienia</label>
                     <audio class="audio-player" controls>
-                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        <source src="sound/electric_guitar_sound_demo_audacity.mp3" type="audio/mpeg">
                         Twoja przeglądarka nie obsługuje odtwarzacza audio.
                     </audio>
                     <!-- tutaj w zaleznosci od tego jaki instrument dodamy krotka probe dzwiekowa TODO pozniej -->
@@ -184,14 +196,16 @@
     <script>
         const products = [
             { id: 1, name: 'Telecaster Standard', brand: 'Fender', type: 'Telecaster', price: 2499, specs: 'Model: American Standard', desc: 'Klasyczna Telecaster idealna do bluesa i rocka. Doskonałe brzmienie z dwoma pickupami Single Coil.', image: 'images/telecaster_fender.jpg' },
-            { id: 2, name: 'Stratocaster Deluxe', brand: 'Fender', type: 'Stratocaster', price: 2899, specs: 'Model: Deluxe Plus', desc: 'Wszechstronna Stratocaster z wbudowanymi efektami. Idealna dla zaawansowanych muzyków.', icon: '⚡' },
-            { id: 3, name: 'Les Paul Classic', brand: 'Gibson', type: 'Les Paul', price: 4299, specs: 'Model: Classic', desc: 'Legendarny instrument do ciężkiego rocka. Grubsze brzmienie z Humbucker pickupami.', icon: '⚡' },
-            { id: 4, name: 'SG Standard', brand: 'Gibson', type: 'SG', price: 3499, specs: 'Model: Standard', desc: 'Lekka SG z agresywnym brzmieniem. Idealna do metalowych brzmień.', icon: '⚡' },
-            { id: 5, name: 'Ibanez RG550', brand: 'Ibanez', type: 'Stratocaster', price: 1999, specs: 'Model: RG550', desc: 'Idealna do metalu i shredowania. Szybka skalownica i niskie naciągi.', icon: '⚡' },
-            { id: 6, name: 'Harley Benton Thinline', brand: 'Harley Benton', type: 'Les Paul', price: 799, specs: 'Model: Thinline', desc: 'Budżetowy wybór dla początkujących. Świetna cena za taką jakość!', icon: '⚡' },
-            { id: 7, name: 'Epiphone Les Paul', brand: 'Epiphone', type: 'Les Paul', price: 1599, specs: 'Model: Standard Plus', desc: 'Idealna cena do jakości dla Les Paul. Doskonała dla hobbyistów.', icon: '⚡' },
-            { id: 8, name: 'Telecaster Custom', brand: 'Fender', type: 'Telecaster', price: 3199, specs: 'Model: Custom Shop', desc: 'Limitowana edycja z unique pickupami. Handmade kolekcja Fendera.', icon: '⚡' },
-            { id: 9, name: 'Ibanez JEM77', brand: 'Ibanez', type: 'Stratocaster', price: 2299, specs: 'Model: JEM Series', desc: 'Gitara do shredowania z tremolo. Profesjonalny wybór.', icon: '⚡' }
+            { id: 2, name: 'Player II Strat HSS RW 3TS', brand: 'Fender', type: 'Stratocaster', price: 2899, specs: 'Model: Player II', desc: 'Wszechstronna Stratocaster z wbudowanymi efektami. Idealna dla zaawansowanych muzyków.', image: 'images/playerII.jpg' },
+            { id: 3, name: 'Les Paul Standard 60s ', brand: 'Gibson', type: 'Les Paul', price: 4299, specs: 'Model: Standard 60s ', desc: 'Legendarny instrument do ciężkiego rocka. Grubsze brzmienie z Humbucker pickupami.', image: 'images/gibson60s.jpg' },
+            { id: 4, name: 'Les Paul Standard 50s ', brand: 'Gibson', type: 'Les Paul', price: 10590, specs: 'Model: Standard 50s ', desc: 'Legendarny instrument do ciężkiego rocka. Grubsze brzmienie z Humbucker pickupami.', image: 'images/gibson50s.jpg' },
+            { id: 5, name: 'SG Standard', brand: 'Gibson', type: 'SG', price: 6440, specs: 'Model: SG Standard', desc: 'Lekka SG z agresywnym brzmieniem. Idealna do metalowych brzmień.', image: 'images/sgstandard.jpg' },
+            { id: 6, name: 'Ibanez RG550', brand: 'Ibanez', type: 'Stratocaster', price: 4480, specs: 'Model: RG550', desc: 'Idealna do metalu i shredowania. Szybka skalownica i niskie naciągi.', image: 'images/ibanezrg550.jpg' },
+            { id: 7, name: 'SC-500 WH Vintage Series', brand: 'Harley Benton', type: 'Les Paul', price: 699, specs: 'Model: SC-500', desc: 'Budżetowy wybór dla początkujących. Świetna cena za taką jakość!', image: 'images/bentonsc500wh.jpg' },
+            { id: 8, name: 'SC-500 BK Vintage Series', brand: 'Harley Benton', type: 'Les Paul', price: 699, specs: 'Model: SC-500', desc: 'Budżetowy wybór dla początkujących. Świetna cena za taką jakość!', image: 'images/bentonsc500bk.jpg' },
+            { id: 9, name: 'Epiphone Les Paul', brand: 'Epiphone', type: 'Les Paul', price: 1649, specs: 'Model: Standard Plus', desc: 'Idealna cena do jakości dla Les Paul. Doskonała dla hobbyistów.', image: 'images/epiphonelp.jpg' },
+            { id: 10, name: 'Player II Mod Tele SH RW 3TS', brand: 'Fender', type: 'Telecaster', price: 4199, specs: 'Model: Custom Shop', desc: 'Limitowana edycja z unique pickupami. Handmade kolekcja Fendera.', image: 'images/playerIImodtele.jpg' },
+            { id: 11, name: 'Ibanez GRX40-MLB', brand: 'Ibanez', type: 'Stratocaster', price: 799, specs: 'Model: GRX40-MLB', desc: 'Gitara do shredowania z tremolo. Profesjonalny wybór.', image: 'images/ibanezgrx40.jpg' }
         ];
 
         function displayProducts(filtered) {
@@ -244,7 +258,15 @@
                     return false;
                 });
             }
+            const sortValue = document.getElementById('sortPrice').value;
 
+            if (sortValue === 'asc') {
+                filtered.sort((a, b) => a.price - b.price);
+            }
+
+            if (sortValue === 'desc') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
             displayProducts(filtered);
         }
 
@@ -285,6 +307,7 @@
 
         displayProducts(products);
     </script>
+    <script src="theme.js"></script>
 </body>
 
 </html>
