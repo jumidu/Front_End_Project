@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboardy - Sklep Muzyczny</title>
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
 </head>
 
 <body>
@@ -23,23 +24,22 @@
             </div>
 
             <div class="nav-buttons">
-                <button class="btn-icon"><img src="images/search.svg" class="icon"> Szukaj</button>
+                <button class="btn-icon btn-access" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
+                <button class="btn-icon"><img src="images/search.svg" class="icon" onerror="this.style.display='none'"> Szukaj</button>
                 <button class="btn-icon">👤 Konto</button>
-                <button class="btn-icon">🛒 Koszyk (0)</button>
+                <button class="btn-icon" onclick="openCartModal()">🛒 Koszyk (0)</button>
+                <button class="btn-icon" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
             </div>
         </div>
     </div>
 
-    <!-- Navigation Categories -->
     <div class="nav-categories">
         <div class="nav-categories-content">
-            <div class="nav-item"><a href="index.html">Wszystkie</a></div>
-            <div class="nav-item"><a href="gitary.html">Gitary</a></div>
-            <div class="nav-item"><a href="pianina.html">Pianina</a></div>
-            <div class="nav-item active"><a href="keyboardy.html">Keyboardy</a></div>
-            <div class="nav-item"><a href="#">Perkusja</a></div>
-            <div class="nav-item"><a href="#">Wzmacniacze</a></div>
-            <div class="nav-item"><a href="#">Akcesoria</a></div>
+            <a href="index.html" class="nav-item">Wszystkie</a>
+            <a href="gitary.html" class="nav-item">Gitary</a>
+            <a href="fortepiany.html"class="nav-item">Fortepiany</a>
+            <a href="keyboardy.html"class="nav-item">Keyboardy</a>
+            <div class="nav-item">Perkusja</div>
         </div>
     </div>
 
@@ -273,6 +273,7 @@
 
         displayProducts(products);
     </script>
+    <script src="accessibility.js"></script>
 </body>
 
 </html>
