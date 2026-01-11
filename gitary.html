@@ -24,11 +24,14 @@
 
             <div class="nav-buttons">
                 <button class="btn-icon btn-access" id="btn-theme" onclick="toggleTheme()" title="Tryb Ciemny/Jasny">🌙</button>
-                
+
                 <button class="btn-icon btn-access" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
-                
+
                 <button class="btn-icon"><img src="images/search.svg" class="icon" onerror="this.style.display='none'"> Szukaj</button>
                 <button class="btn-icon" onclick="openCartModal()">🛒 Koszyk (0)</button>
+                <button class="btn-icon">👤 Konto</button>
+                  <!-- dark mode -->
+                <button class="btn-icon" onclick="toggleDarkMode()">🌙</button>
             </div>
         </div>
     </div>
@@ -36,8 +39,8 @@
     <!-- Navigation Categories (identyczna jak na głównej) -->
     <div class="nav-categories">
         <div class="nav-categories-content">
-            <div class="nav-item"><a href="index.html">Wszystkie</a></div>
-            <div class="nav-item active"><a href="gitary.html">Gitary</a></div>
+            <a href="index.html" class="nav-item ">Wszystkie</a>
+            <a href="gitary.html"  class="nav-item active">Gitary</a>
             <div class="nav-item"><a href="#">Pianina</a></div>
             <div class="nav-item"><a href="#">Keyboardy</a></div>
             <div class="nav-item"><a href="#">Perkusja</a></div>
@@ -104,6 +107,8 @@
             });
         });
     </script>
+
+    <script src="theme.js"></script>
 </body>
 
 </html>
