@@ -18,6 +18,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--color-bg);
     color: var(--color-text);
+margin: 0;
+    padding: 0;
+    display: block; /* Upewniamy się, że nie ma flexa */
+    min-height: 100%;
 }
 
 /* Header */
@@ -110,8 +114,9 @@ body {
     white-space: nowrap;
     font-weight: 500;
     color: var(--color-text);
-    display: block;   /*dodane a usuniete wykomentowane w nav-item a*/ 
-    text-decoration: none; 
+    display: block;
+    /*dodane a usuniete wykomentowane w nav-item a*/
+    text-decoration: none;
 }
 
 .nav-item a {
@@ -132,6 +137,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
+
+min-height: 75vh; /* Zajmij 75% wysokości ekranu */
 }
 
 .section-title {
@@ -266,7 +273,10 @@ body {
     color: var(--color-white);
     text-align: center;
     padding: 30px 20px;
-    margin-top: 40px;
+width: 100%;
+    position: relative;
+    margin-top: 50px; /* Daje oddech, żeby nie dotykała produktów */
+    clear: both;
 }
 
 .footer-text {
@@ -432,6 +442,7 @@ body {
     display: grid;
     grid-template-columns: 220px 1fr;
     gap: 20px;
+min-height: 75vh; /* To jest kluczowe! */
 }
 
 
@@ -638,7 +649,8 @@ body {
 }
 
 .modal-content {
-    position: relative; /*  dodane */
+    position: relative;
+    /*  dodane */
     background: var(--color-white);
     margin: 5% auto;
     padding: 30px;
@@ -649,10 +661,11 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
 }
+
 /* zmiana w close-btn i modal-content zeby lepiej wysewitlalo opisy */
-.close-btn { 
+.close-btn {
     position: absolute;
-     top: 20px;
+    top: 20px;
     right: 20px;
 
     color: #aaa;
@@ -817,6 +830,7 @@ body {
     }
 }
 
+/* sortowanie */
 .sort-bar {
     display: flex;
     align-items: center;
@@ -829,9 +843,6 @@ body {
     border-radius: 6px;
     border: 1px solid #ccc;
 }
-
-/* sortowanie */
-
 /* ===================== */
 /* 🌙 TRYB CIEMNY */
 /* ===================== */
