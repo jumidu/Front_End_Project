@@ -53,9 +53,9 @@
             <div class="filter-group">
                 <h4 class="filter-title">Marka</h4>
                 <div class="filter-options">
-                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="harley-benton" onchange="filterProducts()"> <span>Harley Benton</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()"> <span>Yamaha</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="fender" onchange="filterProducts()"> <span>Fender</span></label>
+                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="harley benton" onchange="filterProducts()"> <span>Harley Benton</span></label>
+                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="martin guitar" onchange="filterProducts()"> <span>Martin Guitar</span></label>
+                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="epiphone" onchange="filterProducts()"> <span>Epiphone</span></label>
                     <label class="filter-checkbox"><input type="checkbox" name="brand" value="gibson" onchange="filterProducts()"> <span>Gibson</span></label>
                 </div>
             </div>
@@ -65,8 +65,6 @@
                 <div class="filter-options">
                     <label class="filter-checkbox"><input type="checkbox" name="type" value="dreadnought" onchange="filterProducts()"> <span>Dreadnought</span></label>
                     <label class="filter-checkbox"><input type="checkbox" name="type" value="jumbo" onchange="filterProducts()"> <span>Jumbo</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="type" value="concert" onchange="filterProducts()"> <span>Concert / Folk</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="type" value="parlor" onchange="filterProducts()"> <span>Parlor</span></label>
                 </div>
             </div>
 
@@ -107,7 +105,7 @@
                 <div class="audio-section">
                     <label class="audio-label">🎵 Posłuchaj brzmienia</label>
                     <audio class="audio-player" controls>
-                        <source src="sound/electric_guitar_sound_demo_audacity.mp3" type="audio/mpeg">
+                        <source src="sound/demoakustyk.mp3" type="audio/mpeg">
                         Twoja przeglądarka nie obsługuje odtwarzacza audio.
                     </audio>
                 </div>
@@ -141,13 +139,15 @@
     
     <script>
         const products = [
-            { id: 101, name: 'Harley Benton D-120NT', brand: 'Harley Benton', type: 'Dreadnought', price: 329, specs: 'Świerk/Mahoń', desc: 'Dobra na start.', image: 'images/bentonsc500wh.jpg' },
-            { id: 102, name: 'Yamaha F310', brand: 'Yamaha', type: 'Dreadnought', price: 649, specs: 'Legenda', desc: 'Klasyka gatunku.', image: 'images/yamaha_f310.jpg' },
-            { id: 103, name: 'Fender CD-60S', brand: 'Fender', type: 'Dreadnought', price: 999, specs: 'Solid Top', desc: 'Lita płyta.', image: 'images/fender_cd60s.jpg' },
-            { id: 104, name: 'Taylor 214ce', brand: 'Taylor', type: 'Concert', price: 4999, specs: 'Kształt: Grand Auditorium', desc: 'Profesjonalny instrument.', image: 'images/taylor_214.jpg' },
-            { id: 105, name: 'Gibson SJ-200', brand: 'Gibson', type: 'Jumbo', price: 22000, specs: 'Super Jumbo', desc: 'Król gitar akustycznych.', image: 'images/gibson_sj200.jpg' },
-            // Tutaj był błąd! Poprawiony obiekt poniżej:
-            { id: 106, name: 'Custom Line King-CE VS', brand: 'Harley Benton', type: 'Dreadnought', price: 899, specs: 'Vintage Series', desc: 'Styl vintage i nowoczesne brzmienie.', image: 'images/benton_king.jpg' }
+            { id: 101, name: 'Custom Line King-CE VS', brand: 'Harley Benton', type: 'Jumbo', price: 1249, specs: 'Jumbo z Cutaway', desc: 'Styl vintage i nowoczesne brzmienie.', image: 'images/clkcv.jpg' },
+            { id: 102, name: 'D-120NT', brand: 'Harley Benton', type: 'Dreadnought', price: 329, specs: 'Ożebrowanie X', desc: 'Brzemnienie prawie jak western', image: 'images/d120nt.jpg' },
+            { id: 103, name: 'D-10E-02 Sitka Sapele', brand: 'Martin Guitar', type: 'Dreadnought', price: 4099, specs: 'Lity świerk', desc: 'Gitara typu Western z przetwornikiem', image: 'images/d10e.jpg' },
+            { id: 104, name: 'D28', brand: 'Martin Guitar', type: 'Dreadnought', price: 17890, specs: 'Lity świerk', desc: 'Gitara typu Western', image: 'images/d28.jpg' },
+            { id: 105, name: 'Hummingbird Custom', brand: 'Gibson', type: 'Dreadnought', price: 17890, specs: 'Scalloped X-bracing', desc: 'Acoustic Guitar with Pickup', image: 'images/hummingbird.jpg' },
+            { id: 106, name: 'Doves in Flight AN', brand: 'Gibson', type: 'Dreadnought', price: 29490, specs: 'Custom Shop', desc: 'Gitara typu western', image: 'images/doves.jpg' },
+            { id: 107, name: 'J-200 Studio Vintage Sunburst', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Jumbo z Cutaway', desc: 'Streel-String Guitar with Pickup', image: 'images/j200.jpg' },
+            { id: 108, name: 'J-200 Studio EC VS', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Super Jumbo z Cutaway', desc: 'Acoustic Guitar with Pickup', image: 'images/j200studio.jpg' },
+            { id: 109, name: 'J-200 Studio Natural', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Jumbo z Cutaway', desc: 'Streel-String Guitar with Pickup', image: 'images/j200natural.jpg' },
         ];
 
         let currentProductId = null;

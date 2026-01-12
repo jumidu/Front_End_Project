@@ -590,6 +590,7 @@ body {
     justify-content: center;
     font-size: 60px;
     border-right: 2px solid var(--color-border);
+    object-fit: contain;
 }
 
 .product-list-info {
@@ -691,6 +692,7 @@ body {
     font-size: 150px;
     border-radius: 8px;
     border: 2px solid var(--color-border);
+    object-fit: contain;
 }
 
 .modal-info {
