@@ -880,3 +880,8 @@ body {
     --color-secondary: #A78BFA;
     --color-accent: #FBBF24;
 }
+.product-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
