@@ -18,10 +18,21 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--color-bg);
     color: var(--color-text);
-margin: 0;
+    margin: 0;
     padding: 0;
-    display: block; /* Upewniamy się, że nie ma flexa */
-    min-height: 100%;
+    min-height: 100vh; /* ← WAŻNE: zajmuje minimum całą wysokość viewport */
+    display: flex; /* ← DODANE */
+    flex-direction: column; /* ← DODANE */
+}
+/* NOWY wrapper dla zawartości ogolnie do stron zeby footer dzialal czyli dla podstorn z produktami konretnymi tak jak lista elektrycznych askustycznych pianina itp*/
+.main-wrapper {
+    flex: 1; /* ← To wypycha footer */
+    display: flex;
+    flex-direction: column;
+}
+/* Wrapper dla strony kategorii (gitary.html) i dla index.html "Wszystkie" */
+.wrapper-gitary {
+    flex: 1; /* Wypycha footer na dół */
 }
 
 /* Header */
@@ -137,10 +148,11 @@ margin: 0;
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-
-min-height: 75vh; /* Zajmij 75% wysokości ekranu */
+flex: 1; /* ← DODANE: wypycha footer na dół potrzebne lub nie */
+/* min-height: 75vh; Zajmij 75% wysokości ekranu */
 }
 
+/* nadmiar2 */
 .section-title {
     font-size: 32px;
     font-weight: bold;
@@ -269,14 +281,13 @@ min-height: 75vh; /* Zajmij 75% wysokości ekranu */
 
 
 .footer {
-    background: var(--color-primary);
+   background: var(--color-primary);
     color: var(--color-white);
     text-align: center;
     padding: 30px 20px;
-width: 100%;
-    position: relative;
-    margin-top: 50px; /* Daje oddech, żeby nie dotykała produktów */
-    clear: both;
+    width: 100%;
+    margin-top: auto; /* ← ZMIENIONE z margin-top: 50px */
+    /* Nie potrzebujesz position ani clear */
 }
 
 .footer-text {
@@ -442,7 +453,8 @@ width: 100%;
     display: grid;
     grid-template-columns: 220px 1fr;
     gap: 20px;
-min-height: 75vh; /* To jest kluczowe! */
+    width: 100%; /* ← DODANE: zajmuje całą dostępną szerokość */
+    flex: 1; /* ← ZACHOWANE: rozciąga w pionie */
 }
 
 
@@ -536,12 +548,12 @@ min-height: 75vh; /* To jest kluczowe! */
 .content-header {
     margin-bottom: 24px;
 }
-
-.section-title {
-    font-size: 28px;
+/* nadmiar1 */
+.section-title { 
+    font-size: 40px;
     font-weight: bold;
     color: var(--color-primary);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .result-count {
@@ -857,3 +869,4 @@ min-height: 75vh; /* To jest kluczowe! */
     --color-secondary: #A78BFA;
     --color-accent: #FBBF24;
 }
+
