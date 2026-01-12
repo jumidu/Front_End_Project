@@ -230,7 +230,7 @@
                         <div class="product-list-brand">${product.brand}</div>
                         <h3 class="product-list-name">${product.name}</h3>
                         <div class="product-list-price">${product.price} zł</div>
-                        <button class="btn-details" onclick="openProductModal(${product.id})">Szczegóły</button>
+                        <button class="btn-details" onclick="openModal(${product.id})">Szczegóły</button>
                     </div>
                 `;
                 grid.appendChild(item);
@@ -238,6 +238,18 @@
 
             document.getElementById('resultCount').textContent = filtered.length;
         }
+
+const params = new URLSearchParams(window.location.search);
+    const productId = params.get('product');
+
+    if (productId) {
+        const id = parseInt(productId);
+        const productExists = products.some(p => p.id === id);
+
+        if (productExists) {
+            openModal(id);
+        }
+    }
 
         function filterProducts() {
             const brands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
@@ -274,7 +286,7 @@
             filterProducts();
         }
 
-        function openProductModal(productId) {
+        function openModal(productId) {
             const product = products.find(p => p.id === productId);
             
             currentProductId = productId; 

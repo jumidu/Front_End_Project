@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script> 
 </head>
+</head>
 
 <body>
+    <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="logo">
@@ -35,24 +37,28 @@
         <div class="nav-categories-content">
             <a href="index.html" class="nav-item">Wszystkie</a>
             <a href="gitary.html" class="nav-item">Gitary</a>
-            <a href="fortepiany.html" class="nav-item active">Fortepiany</a>
-            <a href="keyboardy.html" class="nav-item">Keyboardy</a>
+            <a href="fortepiany.html"class="nav-item">Fortepiany</a>
+            <a href="keyboardy.html"class="nav-item">Keyboardy</a>
             <div class="nav-item">Perkusja</div>
         </div>
     </div>
 
+    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="breadcrumb-content">
             <a href="index.html">Sklep</a> / <a href="fortepiany.html">Fortepiany</a> 
         </div>
     </div>
 
+    <!-- Main Container -->
     <div class="products-container">
+        <!-- Sidebar Filters -->
         <aside class="filters-sidebar">
             <div class="filters-header">
                 <h3>🔍 Filtry</h3>
             </div>
 
+            <!-- Marka -->
             <div class="filter-group">
                 <h4 class="filter-title">MARKA</h4>
                 <div class="filter-options">
@@ -67,6 +73,7 @@
                 </div>
             </div>
 
+            <!-- Cena -->
             <div class="filter-group">
                 <h4 class="filter-title">CENA</h4>
                 <div class="filter-options">
@@ -85,9 +92,11 @@
                 </div>
             </div>
 
+            <!-- Przycisk filtrów -->
             <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
         </aside>
 
+        <!-- Main Content -->
         <main class="content-area">
             <div class="content-header">
                 <h1 class="section-title"> Pianina</h1>
@@ -99,6 +108,7 @@
         </main>
     </div>
 
+    <!-- Modal Detail View -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -150,10 +160,10 @@
 
     <script>
         const products = [
-            { id: 201, name: 'Yamaha GB1K PE', brand: 'Yamaha', type: 'Pianino', price: 52000, specs: 'Model: GB1K PE', desc: 'Akustyczny fortepian typu „baby grand” o długości 151 cm, łączący brzmienie zbliżone do większych fortepianów z kompaktowym rozmiarem.', image: 'images/yamaha-gb1k-pe.webp' },
-            { id: 202, name: 'Kawai GL10 WH', brand: 'Kawai', type: 'Pianino', price: 51000, specs: 'Model: GL10 WH', desc: 'Przystępny cenowo fortepian, szanowanej na całym świecie marki.', image: 'images/kawai-gl-10-wh.webp' },
-            { id: 203, name: 'Kawai GX 2 WH/P', brand: 'Kawai', type: 'Pianino', price: 125000, specs: 'Model: GX 2 WH/P', desc: 'Wykonany z najwyższą starannością instrument, który w 2017 roku otrzymał nagrodę "Product Excellence Award".', image: 'images/Kawai-GX-2-W-BWP.webp' },
-            { id: 204, name: 'Kawai GX 7', brand: 'Kawai', type: 'Pianino', price: 220000, specs: 'Model: GX 7', desc: 'Zaprojektowany z myślą o najbardziej wymagających pianistach i salach koncertowych.', image: 'images/kawai-gx-7.webp' }
+            { id: 1, name: 'Yamaha GB1K PE', brand: 'Yamaha', type: 'Pianino', price: 52000, specs: 'Model: GB1K PE', desc: 'Akustyczny fortepian typu „baby grand” o długości 151 cm, łączący brzmienie zbliżone do większych fortepianów z kompaktowym rozmiarem.', image: 'images/yamaha-gb1k-pe.jpg' },
+            { id: 2, name: 'Kawai GL10 WH', brand: 'Kawai', type: 'Pianino', price: 51000, specs: 'Model: GL10 WH', desc: 'Przystępny cenowo fortepian, szanowanej na całym świecie marki.', image: 'images/kawai-gl-10-wh.jpg' },
+            { id: 3, name: 'Kawai GX 2 WH/P', brand: 'Kawai', type: 'Pianino', price: 125000, specs: 'Model: GX 2 WH/P', desc: 'Wykonany z najwyższą starannością instrument, który w 2017 roku otrzymał nagrodę "Product Excellence Award".', image: 'images/Kawai-GX-2-W-BWP.jpg' },
+            { id: 4, name: 'Kawai GX 7', brand: 'Kawai', type: 'Pianino', price: 220000, specs: 'Model: GX 7', desc: 'Zaprojektowany z myślą o najbardziej wymagających pianistach i salach koncertowych.', image: 'images/kawai-gx-7.jpg' }
         ];
 
         // DODANE: Zmienna do przechowywania ID
@@ -181,6 +191,18 @@
             document.getElementById('resultCount').textContent = filtered.length;
         }
 
+        const params = new URLSearchParams(window.location.search);
+    const productId = params.get('product');
+
+    if (productId) {
+        const id = parseInt(productId);
+        const productExists = products.some(p => p.id === id);
+
+        if (productExists) {
+            openModal(id);
+        }
+    }
+
         function filterProducts() {
             const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
             const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
@@ -191,9 +213,11 @@
             if (selectedBrands.length > 0) {
                 filtered = filtered.filter(p => selectedBrands.some(b => p.brand.toLowerCase().includes(b.split('-').join(' '))));
             }
+
             if (selectedTypes.length > 0) {
                 filtered = filtered.filter(p => selectedTypes.some(t => p.type.toLowerCase() === t.replace('-', ' ')));
             }
+
             if (selectedPrices.length > 0) {
                 filtered = filtered.filter(p => {
                     if (selectedPrices.includes('budget') && p.price < 60000) return true;
@@ -202,6 +226,7 @@
                     return false;
                 });
             }
+
             displayProducts(filtered);
         }
 
@@ -247,4 +272,5 @@
     <script src="cart.js"></script>
     <script src="accessibility.js"></script>
 </body>
+
 </html>
