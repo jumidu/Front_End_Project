@@ -243,7 +243,7 @@
                         <div class="product-list-brand">${product.brand}</div>
                         <h3 class="product-list-name">${product.name}</h3>
                         <div class="product-list-price">${product.price} zł</div>
-                        <button class="btn-details" onclick="openProductModal(${product.id})">Szczegóły</button>
+                        <button class="btn-details" onclick="openModal(${product.id})">Szczegóły</button>
                     </div>
                 `;
                 grid.appendChild(item);
@@ -299,7 +299,7 @@ const params = new URLSearchParams(window.location.search);
             filterProducts();
         }
 
-        function openProductModal(productId) {
+        function openModal(productId) {
             const product = products.find(p => p.id === productId);
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
