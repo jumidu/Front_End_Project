@@ -94,21 +94,28 @@
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="modal-layout">
-                <div class="modal-image-box" id="modalImage"></div>
-                <div class="modal-info">
-                    <h2 class="modal-title" id="modalTitle"></h2>
-                    <p class="modal-specs" id="modalSpecs"></p>
-                    <p class="modal-price" id="modalPrice"></p>
-                    <p class="modal-description" id="modalDescription"></p>
-                    <div class="audio-section">
-                        <label class="audio-label">🎵 Posłuchaj brzmienia</label>
-                        <audio class="audio-player" controls style="width:100%"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg"></audio>
-                    </div>
-                    <div class="modal-buttons">
-                        <button class="btn-modal btn-buy" onclick="addToCartFromModal()">🛒 Dodaj do koszyka</button>
-                        <button class="btn-modal btn-close" onclick="closeModal()">Zamknij</button>
-                    </div>
+
+            <div class="modal-image" id="modalImage">⚡</div>
+
+            <div class="modal-info">
+                <h2 class="modal-title" id="modalTitle">Gitara Elektryczna</h2>
+                <p class="modal-specs" id="modalSpecs">Model: -</p>
+                <p class="modal-price" id="modalPrice">0 zł</p>
+
+                <p class="modal-description" id="modalDescription">Opis produktu</p>
+
+                <div class="audio-section">
+                    <label class="audio-label">🎵 Posłuchaj brzmienia</label>
+                    <audio class="audio-player" controls>
+                        <source src="sound/electric_guitar_sound_demo_audacity.mp3" type="audio/mpeg">
+                        Twoja przeglądarka nie obsługuje odtwarzacza audio.
+                    </audio>
+                    <!-- tutaj w zaleznosci od tego jaki instrument dodamy krotka probe dzwiekowa TODO pozniej -->
+                </div>
+
+                <div class="modal-buttons">
+                    <button class="btn-modal btn-buy" onclick="addToCart()">🛒 Dodaj do koszyka</button>
+                    <button class="btn-modal btn-close" onclick="closeModal()">Zamknij</button>
                 </div>
             </div>
         </div>
@@ -134,11 +141,12 @@
     <script src="accessibility.js"></script>
     <script>
         const products = [
-            { id: 101, name: 'Harley Benton D-120NT', brand: 'Harley Benton', type: 'Dreadnought', price: 329, specs: 'Świerk/Mahoń', desc: 'Dobra na start.', image: 'images/hb_d120.jpg' },
+            { id: 101, name: 'Harley Benton D-120NT', brand: 'Harley Benton', type: 'Dreadnought', price: 329, specs: 'Świerk/Mahoń', desc: 'Dobra na start.', image: 'images/bentonsc500wh.jpg' },
             { id: 102, name: 'Yamaha F310', brand: 'Yamaha', type: 'Dreadnought', price: 649, specs: 'Legenda', desc: 'Klasyka gatunku.', image: 'images/yamaha_f310.jpg' },
             { id: 103, name: 'Fender CD-60S', brand: 'Fender', type: 'Dreadnought', price: 999, specs: 'Solid Top', desc: 'Lita płyta.', image: 'images/fender_cd60s.jpg' },
             { id: 104, name: 'Taylor 214ce', brand: 'Taylor', type: 'Concert', price: 4999, specs: 'Kształt: Grand Auditorium', desc: 'Profesjonalny instrument.', image: 'images/taylor_214.jpg' },
-            { id: 105, name: 'Gibson SJ-200', brand: 'Gibson', type: 'Jumbo', price: 22000, specs: 'Super Jumbo', desc: 'Król gitar akustycznych.', image: 'images/gibson_sj200.jpg' }
+            { id: 105, name: 'Gibson SJ-200', brand: 'Gibson', type: 'Jumbo', price: 22000, specs: 'Super Jumbo', desc: 'Król gitar akustycznych.', image: 'images/gibson_sj200.jpg' },
+            { id: 106, name: 'Custom Line King-CE VS', brand: 'Harley Benton'}
         ];
 
         let currentProductId = null;
@@ -191,17 +199,16 @@
             filterProducts();
         }
 
-        function openProductModal(id) {
-            currentProductId = id;
-            const product = products.find(p => p.id === id);
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
             document.getElementById('modalTitle').textContent = product.name;
-            document.getElementById('modalSpecs').textContent = product.specs;
+            document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
             document.getElementById('modalPrice').textContent = product.price + ' zł';
             document.getElementById('modalDescription').textContent = product.desc;
-            
-            const placeholder = `https://placehold.co/600x600/EEE/31343C?text=${encodeURIComponent(product.name)}`;
-            document.getElementById('modalImage').innerHTML = `<img src="${product.image}" onerror="this.src='${placeholder}'">`;
-            
+
+            // Wyświetl zdjęcie JPG w modalu
+            document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
+
             document.getElementById('productModal').classList.add('show');
         }
 

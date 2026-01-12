@@ -287,15 +287,16 @@
             filterProducts();
         }
 
-        function openProductModal(id) {
-            const product = products.find(p => p.id === id);
-            currentProductId = id;
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
             document.getElementById('modalPrice').textContent = product.price + ' zł';
             document.getElementById('modalDescription').textContent = product.desc;
-            const imgBox = document.getElementById('modalImage');
-            imgBox.innerHTML = product.image ? `<img src="${product.image}">` : (product.icon || '⚡');
+
+            // Wyświetl zdjęcie JPG w modalu
+            document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
+
             document.getElementById('productModal').classList.add('show');
         }
 
