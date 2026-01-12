@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wzmacniacze Gitarowe - MusicStore</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo-icon" viewBox="0 0 16 16">
+                    <path
+                        d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
+                    <path fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z" />
+                    <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
+                </svg>
+                <span class="logo-text">MusicStore</span>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn-icon btn-access" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
+                <button class="btn-icon"><img src="images/search.svg" class="icon" onerror="this.style.display='none'">
+                    Szukaj</button>
+                <button class="btn-icon">👤 Konto</button>
+                <button class="btn-icon" onclick="openCartModal()">🛒 Koszyk (0)</button>
+                <button class="btn-icon" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-categories">
+        <div class="nav-categories-content">
+            <a href="index.html" class="nav-item">Wszystkie</a>
+            <a href="gitary.html" class="nav-item">Gitary</a>
+            <a href="fortepiany.html" class="nav-item">Fortepiany</a>
+            <a href="keyboardy.html" class="nav-item">Keyboardy</a>
+            <a href="wzmacniacze.html" class="nav-item active">Wzmacniacze</a>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">Sklep</a> / <span>Wzmacniacze</span>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="products-container">
+            <aside class="filters-sidebar">
+                <div class="filters-header">
+                    <h3>🔍 Filtry Amps</h3>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-title">MARKA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="brand" value="marshall" onchange="filterProducts()">
+                            <span>Marshall</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="brand" value="vox" onchange="filterProducts()">
+                            <span>Vox</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="brand" value="fender" onchange="filterProducts()">
+                            <span>Fender</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-title">TYP KONSTRUKCJI</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="type" value="tranzystorowe" onchange="filterProducts()">
+                            <span>Kombo tranzystorowe</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="type" value="lampowe" onchange="filterProducts()">
+                            <span>Kombo lampowe</span>
+                        </label>
+                       
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4 class="filter-title">CENA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="price" value="budget" onchange="filterProducts()">
+                            <span>Poniżej 1000 zł</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="price" value="mid" onchange="filterProducts()">
+                            <span>1000 - 3000 zł</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="price" value="premium" onchange="filterProducts()">
+                            <span>Powyżej 3000 zł</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
+            </aside>
+
+            <main class="content-area">
+                <div class="content-header">
+                    <h1 class="section-title">🔊 Wzmacniacze Gitarowe</h1>
+
+                    <div class="sort-bar">
+                        <label for="sortPrice">Sortuj wg ceny:</label>
+                        <select id="sortPrice" onchange="filterProducts()">
+                            <option value="">Domyślnie</option>
+                            <option value="asc">Cena rosnąco</option>
+                            <option value="desc">Cena malejąco</option>
+                        </select>
+                    </div>
+
+                    <p class="result-count">Wyników: <span id="resultCount">0</span></p>
+                </div>
+
+                <div class="products-list" id="productsGrid"></div>
+            </main>
+        </div>
+
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div class="modal-image" id="modalImage">🔊</div>
+                <div class="modal-info">
+                    <h2 class="modal-title" id="modalTitle">Wzmacniacz</h2>
+                    <p class="modal-specs" id="modalSpecs">-</p>
+                    <p class="modal-price" id="modalPrice">0 zł</p>
+                    <p class="modal-description" id="modalDescription">Opis wzmacniacza</p>
+                    <div class="modal-buttons">
+                        <button class="btn-modal btn-buy" onclick="addToCartFromModal()">🛒 Dodaj do koszyka</button>
+                        <button class="btn-modal btn-close" onclick="closeModal()">Zamknij</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+            <h2 class="section-title" style="font-size: 24px;"> Twój Koszyk</h2>
+            <div id="cartItemsContainer" class="cart-items-list"></div>
+            <div class="cart-summary">
+                <span>Suma:</span>
+                <span id="cartTotalDisplay">0 zł</span>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal btn-buy" onclick="checkout()">✅ Zamawiam</button>
+                <button class="btn-modal btn-close" onclick="closeCartModal()">Wróć do sklepu</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone.</p>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="accessibility.js"></script>
+    <script>
+      const products = [
+    { id: 1, name: 'Marshall MG15GR', brand: 'Marshall', type: 'tranzystorowe', price: 399, specs: '15W, 1x8", 2 kanały (clean & overdrive)', desc: 'Kompaktowy wzmacniacz tranzystorowy idealny do ćwiczeń w domu. Klasyczne brzmienie Marshalla w przystępnej cenie.', image: 'images/mg15r.jpg' },
+    { id: 2, name: 'Marshall MG10G', brand: 'Marshall', type: 'tranzystorowe', price: 319, specs: '10W, 1x6,5", 2 kanały (clean & overdrive)', desc: 'Mały wzmacniacz tranzystorowy do nauki gry. Prosty w obsłudze, z charakterystycznym brzmieniem Marshalla.', image: 'images/mg10g.jpeg' },
+    { id: 3, name: 'Marshall MG30GFX', brand: 'Marshall', type: 'tranzystorowe', price: 749, specs: '30W, 1x10", 4 kanały', desc: 'Wszechstronny wzmacniacz tranzystorowy z wbudowanymi efektami. Doskonały do rocka i hard rocka.', image: 'images/mg30fx.jpg' },
+    { id: 4, name: 'Fender Frontman 10G', brand: 'Fender', type: 'tranzystorowe', price: 375, specs: '10W, 1x 6" Fender Special Design speaker, 1 kanał', desc: 'Kompaktowy wzmacniacz tranzystorowy Fendera. Idealny dla początkujących gitarzystów.', image: 'images/frontman10G.jpg' },
+    { id: 5, name: 'Fender Frontman 20G', brand: 'Fender', type: 'tranzystorowe', price: 499, specs: '20W,1x 8" Fender Special Design speaker, 2 kanały (normal & drive)', desc: 'Uniwersalny wzmacniacz tranzystorowy z czystym brzmieniem Fendera i kanałem overdrive.', image: 'images/frontman20g.jpg' },
+    { id: 6, name: 'Fender Champion II 50', brand: 'Fender', type: 'tranzystorowe', price: 1029, specs: '50W, 1x12"Fender Special Design speaker', desc: 'Mocny wzmacniacz tranzystorowy z technologią modelowania. Świetny stosunek ceny do możliwości.', image: 'images/championII50.jpg' },
+    { id: 7, name: 'Vox Pathfinder 10', brand: 'Vox', type: 'tranzystorowe', price: 411, specs: '10W, 1x6.5" Bulldog speaker', desc: 'Poręczny wzmacniacz tranzystorowy z charakterystycznym brzmieniem Voxa. Doskonały do ćwiczeń.', image: 'images/vox_pathfinder10.jpg' },
+    { id: 8, name: 'Marshall DSL5CR', brand: 'Marshall', type: 'lampowe', price: 1499, specs: 'obwód o niskim poborze mocy od 5 W do 0,5 W, Lampy przedwzmacniacza: 2x ECC83, reverb', desc: 'Kompaktowy wzmacniacz lampowy z przełączanym poborem mocy. Prawdziwe brzmienie Marshalla w małym opakowaniu.', image: 'images/MarshallDSL5CR.jpg' },
+    { id: 9, name: 'Marshall Origin 50C Combo', brand: 'Marshall', type: 'lampowe', price: 3099, specs: '50W,Lampy przedwzmacniacza:3 x ECC83 (12AX7), funkcja Gain Boost', desc: 'Profesjonalny wzmacniacz lampowy z klasycznym brzmieniem Marshalla. Idealny na scenę i do studia.', image: 'images/lampa50marshall.jpg' },
+    { id: 10, name: 'Vox AC15C1', brand: 'Vox', type: 'lampowe', price: 3111, specs: '15W, 12" Celestion G12M Greenback Speaker', desc: 'Legendarny lampowy Vox z kultowym brytyjskim brzmieniem. Ulubiony wzmacniacz wielu profesjonalistów.', image: 'images/vox_ac15c1.jpg' },
+    { id: 11, name: 'Vox AC30 C2X Blue Bulldog', brand: 'Vox', type: 'lampowe', price: 7590, specs: '30W, 12" 2x 12" Celestion Blue Bulldog alnico speakers, Lampy przedwzmacniacza: 3x 12AX7 (ECC83)', desc: 'Ikoniczny wzmacniacz lampowy Vox z głośnikami alnico. Topowe brzmienie, używane przez największe gwiazdy rocka.', image: 'images/vox_ac30c2x.jpg' },
+    { id: 12, name: 'Fender PRO Junior IV ', brand: 'Fender', type: 'lampowe', price: 2699, specs: '15W, 1x 10" Jensen P10R, 2 kanały (normal & drive)', desc: 'Prosty, lampowy wzmacniacz Fendera z czystym, ciepłym brzmieniem. Świetny do bluesa i rocka.', image: 'images/fenderproiv.jpg' },
+    { id: 13, name: 'Fender 68 Custom Deluxe Reverb', brand: 'Fender', type: 'lampowe', price: 6890, specs: '22W, 1x12" Celestion G12V-70 speaker, 2 kanały Custom & vintage, Efekty: Reverb & Vibrato', desc: 'Premium lampowy wzmacniacz Fendera z wbudowanym reverbem. Legendarne brzmienie z lat 60-tych.', image: 'images/fender68.jpg' }
+];
+
+        let currentProductId = null;
+
+        function displayProducts(filtered) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            filtered.forEach(p => {
+                const item = document.createElement('div');
+                item.className = 'product-list-item';
+                item.innerHTML = `
+                    <img src="${p.image}" class="product-list-image" alt="${p.name}" style="object-fit: contain; background: white;">
+                    <div class="product-list-info">
+                        <div class="product-list-brand">${p.brand}</div>
+                        <h3 class="product-list-name">${p.name}</h3>
+                        <div class="product-list-price">${p.price} zł</div>
+                        <button class="btn-details" onclick="openProductModal(${p.id})">Szczegóły</button>
+                    </div>`;
+                grid.appendChild(item);
+            });
+            document.getElementById('resultCount').textContent = filtered.length;
+        }
+
+        function filterProducts() {
+            const brands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
+            const types = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+            const prices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
+
+            let filtered = products.filter(p => {
+                const brandMatch = brands.length === 0 || brands.includes(p.brand.toLowerCase());
+                const typeMatch = types.length === 0 || types.some(t => p.type.toLowerCase().includes(t));
+
+                let priceMatch = true;
+                if (prices.length > 0) {
+                    priceMatch = false;
+                    if (prices.includes('budget') && p.price < 1000) priceMatch = true;
+                    if (prices.includes('mid') && p.price >= 1000 && p.price <= 3000) priceMatch = true;
+                    if (prices.includes('premium') && p.price > 3000) priceMatch = true;
+                }
+                return brandMatch && typeMatch && priceMatch;
+            });
+
+            const sortValue = document.getElementById('sortPrice').value;
+            if (sortValue === 'asc') filtered.sort((a, b) => a.price - b.price);
+            else if (sortValue === 'desc') filtered.sort((a, b) => b.price - a.price);
+
+            displayProducts(filtered);
+        }
+
+        function openProductModal(productId) {
+            const p = products.find(prod => prod.id === productId);
+            currentProductId = productId;
+            document.getElementById('modalTitle').textContent = p.name;
+            document.getElementById('modalSpecs').textContent = `${p.specs} | ${p.brand}`;
+            document.getElementById('modalPrice').textContent = p.price + ' zł';
+            document.getElementById('modalDescription').textContent = p.desc;
+            document.getElementById('modalImage').innerHTML = `<img src="${p.image}" style="width: 100%; height: 100%; object-fit: contain;">`;
+            document.getElementById('productModal').classList.add('show');
+        }
+
+        function closeModal() { document.getElementById('productModal').classList.remove('show'); }
+        function clearFilters() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            filterProducts();
+        }
+
+        function addToCartFromModal() {
+            const p = products.find(prod => prod.id === currentProductId);
+            if (typeof addToCartGlobal === 'function') {
+                addToCartGlobal(p.id, p.name, p.price, p.image);
+            } else {
+                alert("Dodano do koszyka: " + p.name);
+            }
+            closeModal();
+        }
+
+        // Inicjalizacja
+        displayProducts(products);
+    </script>
+</body>
+
+</html>
