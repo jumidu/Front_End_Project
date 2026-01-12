@@ -33,7 +33,7 @@
     <div class="nav-categories">
         <div class="nav-categories-content">
             <a href="index.html" class="nav-item">Wszystkie</a>
-            <a href="gitary.html" class="nav-item">Gitary</a>
+            <a href="gitary.html" class="nav-item active">Gitary</a>
             <a href="fortepiany.html"class="nav-item">Fortepiany</a>
             <a href="keyboardy.html"class="nav-item">Keyboardy</a>
             <div class="nav-item">Perkusja</div>
@@ -98,7 +98,7 @@
             <div class="modal-image" id="modalImage">⚡</div>
 
             <div class="modal-info">
-                <h2 class="modal-title" id="modalTitle">Gitara Elektryczna</h2>
+                <h2 class="modal-title" id="modalTitle">Gitara</h2>
                 <p class="modal-specs" id="modalSpecs">Model: -</p>
                 <p class="modal-price" id="modalPrice">0 zł</p>
 
@@ -110,11 +110,10 @@
                         <source src="sound/electric_guitar_sound_demo_audacity.mp3" type="audio/mpeg">
                         Twoja przeglądarka nie obsługuje odtwarzacza audio.
                     </audio>
-                    <!-- tutaj w zaleznosci od tego jaki instrument dodamy krotka probe dzwiekowa TODO pozniej -->
                 </div>
 
                 <div class="modal-buttons">
-                    <button class="btn-modal btn-buy" onclick="addToCart()">🛒 Dodaj do koszyka</button>
+                    <button class="btn-modal btn-buy" onclick="addToCartFromModal()">🛒 Dodaj do koszyka</button>
                     <button class="btn-modal btn-close" onclick="closeModal()">Zamknij</button>
                 </div>
             </div>
@@ -139,6 +138,7 @@
 
     <script src="cart.js"></script>
     <script src="accessibility.js"></script>
+    
     <script>
         const products = [
             { id: 101, name: 'Harley Benton D-120NT', brand: 'Harley Benton', type: 'Dreadnought', price: 329, specs: 'Świerk/Mahoń', desc: 'Dobra na start.', image: 'images/bentonsc500wh.jpg' },
@@ -146,7 +146,8 @@
             { id: 103, name: 'Fender CD-60S', brand: 'Fender', type: 'Dreadnought', price: 999, specs: 'Solid Top', desc: 'Lita płyta.', image: 'images/fender_cd60s.jpg' },
             { id: 104, name: 'Taylor 214ce', brand: 'Taylor', type: 'Concert', price: 4999, specs: 'Kształt: Grand Auditorium', desc: 'Profesjonalny instrument.', image: 'images/taylor_214.jpg' },
             { id: 105, name: 'Gibson SJ-200', brand: 'Gibson', type: 'Jumbo', price: 22000, specs: 'Super Jumbo', desc: 'Król gitar akustycznych.', image: 'images/gibson_sj200.jpg' },
-            { id: 106, name: 'Custom Line King-CE VS', brand: 'Harley Benton'}
+            // Tutaj był błąd! Poprawiony obiekt poniżej:
+            { id: 106, name: 'Custom Line King-CE VS', brand: 'Harley Benton', type: 'Dreadnought', price: 899, specs: 'Vintage Series', desc: 'Styl vintage i nowoczesne brzmienie.', image: 'images/benton_king.jpg' }
         ];
 
         let currentProductId = null;
@@ -155,11 +156,13 @@
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
             filtered.forEach(product => {
-                const placeholder = `https://placehold.co/400x400/EEE/31343C?text=${encodeURIComponent(product.name)}`;
+                // Jeśli brak obrazka, użyj placeholdera
+                const imgSource = product.image ? product.image : `https://placehold.co/400x400/EEE/31343C?text=${encodeURIComponent(product.name)}`;
+                
                 const item = document.createElement('div');
                 item.className = 'product-list-item';
                 item.innerHTML = `
-                    <img src="${product.image}" onerror="this.src='${placeholder}'" class="product-list-image">
+                    <img src="${imgSource}" onerror="this.src='https://placehold.co/400x400?text=Brak+foto'" class="product-list-image">
                     <div class="product-list-info">
                         <div class="product-list-brand">${product.brand}</div>
                         <h3 class="product-list-name">${product.name}</h3>
@@ -201,12 +204,13 @@
 
         function openProductModal(productId) {
             const product = products.find(p => p.id === productId);
+            currentProductId = productId; // WAŻNE: Zapisujemy ID
+
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
             document.getElementById('modalPrice').textContent = product.price + ' zł';
             document.getElementById('modalDescription').textContent = product.desc;
 
-            // Wyświetl zdjęcie JPG w modalu
             document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
 
             document.getElementById('productModal').classList.add('show');

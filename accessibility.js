@@ -18,6 +18,8 @@ function applySettings() {
     } else if (currentFontSize === 'extra') {
         document.body.classList.add('fs-extra');
     }
+    
+    // Usunięto: wywołanie updateIcons(), którego nie ma
 }
 
 // Zmień rozmiar czcionki (cyklicznie: Normal -> Large -> Extra -> Normal)

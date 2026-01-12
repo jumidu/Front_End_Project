@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="logo">
@@ -36,14 +35,13 @@
     <div class="nav-categories">
         <div class="nav-categories-content">
             <a href="index.html" class="nav-item">Wszystkie</a>
-            <a href="gitary.html" class="nav-item">Gitary</a>
+            <a href="gitary.html" class="nav-item active">Gitary</a>
             <a href="fortepiany.html"class="nav-item">Fortepiany</a>
             <a href="keyboardy.html"class="nav-item">Keyboardy</a>
             <div class="nav-item">Perkusja</div>
         </div>
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="breadcrumb-content">
             <a href="index.html">Sklep</a> / <a href="gitary.html">Gitary</a> / <span>Elektryczne</span>
@@ -51,15 +49,12 @@
     </div>
 
     <div class="main-wrapper">
-    <!-- Main Container -->
     <div class="products-container">
-        <!-- Sidebar Filters -->
         <aside class="filters-sidebar">
             <div class="filters-header">
                 <h3>🔍 Filtry</h3>
             </div>
 
-            <!-- Marka -->
             <div class="filter-group">
                 <h4 class="filter-title">MARKA</h4>
                 <div class="filter-options">
@@ -86,7 +81,6 @@
                 </div>
             </div>
 
-            <!-- Typ -->
             <div class="filter-group">
                 <h4 class="filter-title">TYP</h4>
                 <div class="filter-options">
@@ -109,7 +103,6 @@
                 </div>
             </div>
 
-            <!-- Cena -->
             <div class="filter-group">
                 <h4 class="filter-title">CENA</h4>
                 <div class="filter-options">
@@ -128,11 +121,9 @@
                 </div>
             </div>
 
-            <!-- Przycisk filtrów -->
             <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
         </aside>
 
-        <!-- Main Content -->
         <main class="content-area">
             <div class="content-header">
                 <h1 class="section-title">⚡ Gitary Elektryczne</h1>
@@ -150,12 +141,10 @@
             </div>
 
             <div class="products-list" id="productsGrid">
-                <!-- Produkty będą wstawione przez JavaScript -->
-            </div>
+                </div>
         </main>
     </div>
 
-    <!-- Modal Detail View -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -175,11 +164,10 @@
                         <source src="sound/electric_guitar_sound_demo_audacity.mp3" type="audio/mpeg">
                         Twoja przeglądarka nie obsługuje odtwarzacza audio.
                     </audio>
-                    <!-- tutaj w zaleznosci od tego jaki instrument dodamy krotka probe dzwiekowa TODO pozniej -->
                 </div>
 
                 <div class="modal-buttons">
-                    <button class="btn-modal btn-buy" onclick="addToCart()">🛒 Dodaj do koszyka</button>
+                    <button class="btn-modal btn-buy" onclick="addToCartFromModal()">🛒 Dodaj do koszyka</button>
                     <button class="btn-modal btn-close" onclick="closeModal()">Zamknij</button>
                 </div>
             </div>
@@ -203,7 +191,6 @@
     </div>
 </div>
 
-    <!-- Footer -->
     <div class="footer">
         <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2
             lata</p>
@@ -289,6 +276,9 @@
 
         function openProductModal(productId) {
             const product = products.find(p => p.id === productId);
+            
+            currentProductId = productId; 
+
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
             document.getElementById('modalPrice').textContent = product.price + ' zł';
@@ -314,3 +304,5 @@
 </body>
 
 </html>
+
+```

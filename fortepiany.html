@@ -8,16 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script> 
 </head>
-</head>
 
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo-icon" viewBox="0 0 16 16">
-                    <path
-                        d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
+                    <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
                     <path fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z" />
                     <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
                 </svg>
@@ -38,28 +35,24 @@
         <div class="nav-categories-content">
             <a href="index.html" class="nav-item">Wszystkie</a>
             <a href="gitary.html" class="nav-item">Gitary</a>
-            <a href="fortepiany.html"class="nav-item">Fortepiany</a>
-            <a href="keyboardy.html"class="nav-item">Keyboardy</a>
+            <a href="fortepiany.html" class="nav-item active">Fortepiany</a>
+            <a href="keyboardy.html" class="nav-item">Keyboardy</a>
             <div class="nav-item">Perkusja</div>
         </div>
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="breadcrumb-content">
             <a href="index.html">Sklep</a> / <a href="fortepiany.html">Fortepiany</a> 
         </div>
     </div>
 
-    <!-- Main Container -->
     <div class="products-container">
-        <!-- Sidebar Filters -->
         <aside class="filters-sidebar">
             <div class="filters-header">
                 <h3>🔍 Filtry</h3>
             </div>
 
-            <!-- Marka -->
             <div class="filter-group">
                 <h4 class="filter-title">MARKA</h4>
                 <div class="filter-options">
@@ -74,7 +67,6 @@
                 </div>
             </div>
 
-            <!-- Cena -->
             <div class="filter-group">
                 <h4 class="filter-title">CENA</h4>
                 <div class="filter-options">
@@ -93,11 +85,9 @@
                 </div>
             </div>
 
-            <!-- Przycisk filtrów -->
             <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
         </aside>
 
-        <!-- Main Content -->
         <main class="content-area">
             <div class="content-header">
                 <h1 class="section-title"> Pianina</h1>
@@ -105,12 +95,10 @@
             </div>
 
             <div class="products-list" id="productsGrid">
-                <!-- Produkty będą wstawione przez JavaScript -->
-            </div>
+                </div>
         </main>
     </div>
 
-    <!-- Modal Detail View -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -130,32 +118,46 @@
                         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
                         Twoja przeglądarka nie obsługuje odtwarzacza audio.
                     </audio>
-                    <!-- tutaj w zaleznosci od tego jaki instrument dodamy krotka probe dzwiekowa TODO pozniej -->
                 </div>
 
                 <div class="modal-buttons">
-                    <button class="btn-modal btn-buy" onclick="addToCart()">🛒 Dodaj do koszyka</button>
+                    <button class="btn-modal btn-buy" onclick="addToCartFromModal()">🛒 Dodaj do koszyka</button>
                     <button class="btn-modal btn-close" onclick="closeModal()">Zamknij</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+            <h2 class="section-title" style="font-size: 24px;">Twój Koszyk</h2>
+            <div id="cartItemsContainer" class="cart-items-list"></div>
+            <div class="cart-summary">
+                <span>Suma:</span>
+                <span id="cartTotalDisplay">0 zł</span>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal btn-buy" onclick="checkout()">✅ Zamawiam</button>
+                <button class="btn-modal btn-close" onclick="closeCartModal()">Wróć</button>
+            </div>
+        </div>
+    </div>
+
     <div class="footer">
-        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2
-            lata</p>
+        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2 lata</p>
     </div>
 
     <script>
         const products = [
-            { id: 1, name: 'Yamaha GB1K PE', brand: 'Yamaha', type: 'Pianino', price: 52000, specs: 'Model: GB1K PE', desc: 'Akustyczny fortepian typu „baby grand” o długości 151 cm, łączący brzmienie zbliżone do większych fortepianów z kompaktowym rozmiarem.', image: 'images/yamaha-gb1k-pe.webp' },
-            { id: 2, name: 'Kawai GL10 WH', brand: 'Kawai', type: 'Pianino', price: 51000, specs: 'Model: GL10 WH', desc: 'Przystępny cenowo fortepian, szanowanej na całym świecie marki.', image: 'images/kawai-gl-10-wh.webp' },
-            { id: 3, name: 'Kawai GX 2 WH/P', brand: 'Kawai', type: 'Pianino', price: 125000, specs: 'Model: GX 2 WH/P', desc: 'Wykonany z najwyższą starannością instrument, który w 2017 roku otrzymał nagrodę "Product Excellence Award".', image: 'images/Kawai-GX-2-W-BWP.webp' },
-            { id: 4, name: 'Kawai GX 7', brand: 'Kawai', type: 'Pianino', price: 220000, specs: 'Model: GX 7', desc: 'Zaprojektowany z myślą o najbardziej wymagających pianistach i salach koncertowych.', image: 'images/kawai-gx-7.webp' }
+            { id: 201, name: 'Yamaha GB1K PE', brand: 'Yamaha', type: 'Pianino', price: 52000, specs: 'Model: GB1K PE', desc: 'Akustyczny fortepian typu „baby grand” o długości 151 cm, łączący brzmienie zbliżone do większych fortepianów z kompaktowym rozmiarem.', image: 'images/yamaha-gb1k-pe.webp' },
+            { id: 202, name: 'Kawai GL10 WH', brand: 'Kawai', type: 'Pianino', price: 51000, specs: 'Model: GL10 WH', desc: 'Przystępny cenowo fortepian, szanowanej na całym świecie marki.', image: 'images/kawai-gl-10-wh.webp' },
+            { id: 203, name: 'Kawai GX 2 WH/P', brand: 'Kawai', type: 'Pianino', price: 125000, specs: 'Model: GX 2 WH/P', desc: 'Wykonany z najwyższą starannością instrument, który w 2017 roku otrzymał nagrodę "Product Excellence Award".', image: 'images/Kawai-GX-2-W-BWP.webp' },
+            { id: 204, name: 'Kawai GX 7', brand: 'Kawai', type: 'Pianino', price: 220000, specs: 'Model: GX 7', desc: 'Zaprojektowany z myślą o najbardziej wymagających pianistach i salach koncertowych.', image: 'images/kawai-gx-7.webp' }
         ];
 
-        
+        // DODANE: Zmienna do przechowywania ID
+        let currentProductId = null;
 
         function displayProducts(filtered) {
             const grid = document.getElementById('productsGrid');
@@ -180,25 +182,18 @@
         }
 
         function filterProducts() {
-            const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked'))
-                .map(cb => cb.value);
-
-            const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked'))
-                .map(cb => cb.value);
-
-            const selectedPrices = Array.from(document.querySelectorAll('input[name="price"]:checked'))
-                .map(cb => cb.value);
+            const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
+            const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+            const selectedPrices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
 
             let filtered = products;
 
             if (selectedBrands.length > 0) {
                 filtered = filtered.filter(p => selectedBrands.some(b => p.brand.toLowerCase().includes(b.split('-').join(' '))));
             }
-
             if (selectedTypes.length > 0) {
                 filtered = filtered.filter(p => selectedTypes.some(t => p.type.toLowerCase() === t.replace('-', ' ')));
             }
-
             if (selectedPrices.length > 0) {
                 filtered = filtered.filter(p => {
                     if (selectedPrices.includes('budget') && p.price < 60000) return true;
@@ -207,20 +202,18 @@
                     return false;
                 });
             }
-
             displayProducts(filtered);
         }
 
         function openModal(productId) {
+            // ZAPISANIE ID
+            currentProductId = productId;
             const product = products.find(p => p.id === productId);
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
             document.getElementById('modalPrice').textContent = product.price + ' zł';
             document.getElementById('modalDescription').textContent = product.desc;
-
-            // Wyświetl zdjęcie JPG w modalu
             document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
-
             document.getElementById('productModal').classList.add('show');
         }
 
@@ -228,9 +221,11 @@
             document.getElementById('productModal').classList.remove('show');
         }
 
-        function addToCart() {
-            const productName = document.getElementById('modalTitle').textContent;
-            alert(`✅ "${productName}" dodana do koszyka!`);
+        // NOWA FUNKCJA DO KOSZYKA
+        function addToCartFromModal() {
+            if (!currentProductId) return;
+            const product = products.find(p => p.id === currentProductId);
+            addToCartGlobal(product.id, product.name, product.price, product.image);
             closeModal();
         }
 
@@ -249,7 +244,7 @@
         displayProducts(products);
     </script>
 
+    <script src="cart.js"></script>
     <script src="accessibility.js"></script>
 </body>
-
 </html>
