@@ -216,14 +216,16 @@ body {
 
 .product-image-container {
     height: 220px;
-    background: linear-gradient(135deg, rgba(46, 134, 171, 0.1), rgba(162, 59, 114, 0.1));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 80px;
-    border-bottom: 2px solid var(--color-border);
-    position: relative;
     overflow: hidden;
+}
+
+.product-image-container img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
 }
 
 .product-info {

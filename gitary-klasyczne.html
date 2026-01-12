@@ -34,10 +34,10 @@
     <div class="nav-categories">
         <div class="nav-categories-content">
             <a href="index.html" class="nav-item">Wszystkie</a>
-            <a href="gitary.html" class="nav-item active">Gitary</a>
+            <a href="gitary.html" class="nav-item">Gitary</a>
             <a href="fortepiany.html" class="nav-item">Fortepiany</a>
             <a href="keyboardy.html" class="nav-item">Keyboardy</a>
-            <div class="nav-item">Perkusja</div>
+            <a href="wzmacniacze.html" class="nav-item">Wzmacniacze</a>
         </div>
     </div>
 
@@ -175,15 +175,15 @@
 
     <script>
         const products = [
-            { id: 401, name: 'Yamaha C40', brand: 'Yamaha', type: '4/4', price: 649, specs: 'Model: C40', desc: 'Bardzo popularna gitara klasyczna dla początkujących. Ciepłe brzmienie i wygodny gryf.', image: 'images/yamaha_c40.jpg' },
-            { id: 402, name: 'Yamaha CS 40', brand: 'Yamaha', type: '3/4', price: 1199, specs: 'Model: CS 40', desc: 'Solidna gitara klasyczna z matowym wykończeniem. Idealna do nauki i gry domowej.', image: 'images/yamaha_cs_40.jpg' },
-            { id: 403, name: 'Admira Alba', brand: 'Admira', type: '1/4', price: 699, specs: 'Model: Alba', desc: 'Hiszpańska gitara klasyczna dla początkujących. Lekka konstrukcja i miękkie struny.', image: 'images/admira_alba.jpg' },
-            { id: 404, name: 'Admira Juanita', brand: 'Admira', type: '4/4', price: 1399, specs: 'Model: Juanita', desc: 'Ręcznie wykonana gitara klasyczna o zrównoważonym brzmieniu. Świetna do szkoły muzycznej.', image: 'images/admira_juanita.jpg' },
-            { id: 405, name: 'Cordoba Protage C1', brand: 'Cordoba', type: '4/4', price: 1099, specs: 'Model: Protage C1', desc: 'Nowoczesna gitara klasyczna inspirowana tradycją hiszpańską. Bardzo dobra projekcja dźwięku.', image: 'images/cordoba_protage_c1.jpg' },
-            { id: 406, name: 'Cordoba Protage C1M CE', brand: 'Cordoba', type: '4/4', price: 1799, specs: 'Model: Protage C1M CE', desc: 'Wyższa półka gitar klasycznych. Lity top i bogate, dynamiczne brzmienie.', image: 'images/cordoba_protege_c1m_ce.jpg'},
-            { id: 407, name: 'Alhambra 2C', brand: 'Alhambra', type: '4/4', price: 1599, specs: 'Model: 2C', desc: 'Profesjonalna gitara klasyczna produkowana w Hiszpanii. Idealna do nauki i koncertów.', image: 'images/alhambra_2c.jpg' },
-            { id: 408, name: 'Alhambra 3C', brand: 'Alhambra', type: '4/4', price: 2399, specs: 'Model: 3C', desc: 'Świetnie wyważone brzmienie i wysoka jakość wykonania. Bardzo popularny model koncertowy.', image: 'images/alhambra_3c.jpg' },
-            { id: 409, name: 'Alhambra 5P', brand: 'Alhambra', type: '4/4', price: 3499, specs: 'Model: 5P', desc: 'Gitara klasyczna klasy premium z litym drewnem. Bogate, głębokie brzmienie dla zaawansowanych.', image: 'images/alhambra_5p.jpg' }
+            { id: 1, name: 'Yamaha C40', brand: 'Yamaha', type: '4/4', price: 649, specs: 'Model: C40', desc: 'Bardzo popularna gitara klasyczna dla początkujących. Ciepłe brzmienie i wygodny gryf.', image: 'images/yamaha_c40.jpg' },
+            { id: 2, name: 'Yamaha CS 40', brand: 'Yamaha', type: '3/4', price: 1199, specs: 'Model: CS 40', desc: 'Solidna gitara klasyczna z matowym wykończeniem. Idealna do nauki i gry domowej.', image: 'images/yamaha_cs_40.jpg' },
+            { id: 3, name: 'Admira Alba', brand: 'Admira', type: '1/4', price: 699, specs: 'Model: Alba', desc: 'Hiszpańska gitara klasyczna dla początkujących. Lekka konstrukcja i miękkie struny.', image: 'images/admira_alba.jpg' },
+            { id: 4, name: 'Admira Juanita', brand: 'Admira', type: '4/4', price: 1399, specs: 'Model: Juanita', desc: 'Ręcznie wykonana gitara klasyczna o zrównoważonym brzmieniu. Świetna do szkoły muzycznej.', image: 'images/admira_juanita.jpg' },
+            { id: 5, name: 'Cordoba Protage C1', brand: 'Cordoba', type: '4/4', price: 1099, specs: 'Model: Protage C1', desc: 'Nowoczesna gitara klasyczna inspirowana tradycją hiszpańską. Bardzo dobra projekcja dźwięku.', image: 'images/cordoba_protage_c1.jpg' },
+            { id: 6, name: 'Cordoba Protage C1M CE', brand: 'Cordoba', type: '4/4', price: 1799, specs: 'Model: Protage C1M CE', desc: 'Wyższa półka gitar klasycznych. Lity top i bogate, dynamiczne brzmienie.', image: 'images/cordoba_protege_c1m_ce.jpg'},
+            { id: 7, name: 'Alhambra 2C', brand: 'Alhambra', type: '4/4', price: 1599, specs: 'Model: 2C', desc: 'Profesjonalna gitara klasyczna produkowana w Hiszpanii. Idealna do nauki i koncertów.', image: 'images/alhambra_2c.jpg' },
+            { id: 8, name: 'Alhambra 3C', brand: 'Alhambra', type: '4/4', price: 2399, specs: 'Model: 3C', desc: 'Świetnie wyważone brzmienie i wysoka jakość wykonania. Bardzo popularny model koncertowy.', image: 'images/alhambra_3c.jpg' },
+            { id: 9, name: 'Alhambra 5P', brand: 'Alhambra', type: '4/4', price: 3499, specs: 'Model: 5P', desc: 'Gitara klasyczna klasy premium z litym drewnem. Bogate, głębokie brzmienie dla zaawansowanych.', image: 'images/alhambra_5p.jpg' }
         ];
 
         let currentProductId = null;
