@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pianina - Sklep Muzyczny</title>
+    <title>Pianina i Fortepiany - MusicStore</title>
     <link rel="stylesheet" href="style.css">
-    <script src="theme.js"></script> 
-</head>
+    <script src="theme.js"></script>
 </head>
 
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="logo">
@@ -43,90 +41,90 @@
         </div>
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="breadcrumb-content">
-            <a href="index.html">Sklep</a> / <a href="fortepiany.html">Fortepiany</a> 
+            <a href="index.html">Sklep</a> / <span>Pianina i Fortepiany</span>
         </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="products-container">
-        <!-- Sidebar Filters -->
-        <aside class="filters-sidebar">
-            <div class="filters-header">
-                <h3>🔍 Filtry</h3>
-            </div>
-
-            <!-- Marka -->
-            <div class="filter-group">
-                <h4 class="filter-title">MARKA</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="kawai" onchange="filterProducts()">
-                        <span>Kawai</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()">
-                        <span>Yamaha</span>
-                    </label>
+    <div class="main-wrapper">
+        <div class="products-container">
+            <aside class="filters-sidebar">
+                <div class="filters-header">
+                    <h3>🔍 Filtry</h3>
                 </div>
-            </div>
 
-            <!-- Cena -->
-            <div class="filter-group">
-                <h4 class="filter-title">CENA</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="price" value="budget" onchange="filterProducts()">
-                        <span>Poniżej 60000 zł</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="price" value="mid" onchange="filterProducts()">
-                        <span>60000 - 180000 zł</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="price" value="premium" onchange="filterProducts()">
-                        <span>Powyżej 180000 zł</span>
-                    </label>
+                <div class="filter-group">
+                    <h4 class="filter-title">MARKA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="brand" value="kawai" onchange="filterProducts()">
+                            <span>Kawai</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()">
+                            <span>Yamaha</span>
+                        </label>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Przycisk filtrów -->
-            <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="content-area">
-            <div class="content-header">
-                <h1 class="section-title"> Pianina</h1>
-                <p class="result-count">Wyników: <span id="resultCount">4</span></p>
-            </div>
-
-            <div class="products-list" id="productsGrid">
+                <div class="filter-group">
+                    <h4 class="filter-title">CENA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="price" value="budget" onchange="filterProducts()">
+                            <span>Poniżej 60 000 zł</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="price" value="mid" onchange="filterProducts()">
+                            <span>60 000 - 180 000 zł</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="price" value="premium" onchange="filterProducts()">
+                            <span>Powyżej 180 000 zł</span>
+                        </label>
+                    </div>
                 </div>
-        </main>
+
+                <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
+            </aside>
+
+            <main class="content-area">
+                <div class="content-header">
+                    <h1 class="section-title">🎹 Pianina i Fortepiany</h1>
+                    
+                    <div class="sort-bar">
+                        <label for="sortPrice">Sortuj wg ceny:</label>
+                        <select id="sortPrice" onchange="filterProducts()">
+                            <option value="">Domyślnie</option>
+                            <option value="asc">Cena rosnąco</option>
+                            <option value="desc">Cena malejąco</option>
+                        </select>
+                    </div>
+
+                    <p class="result-count">Wyników: <span id="resultCount">0</span></p>
+                </div>
+
+                <div class="products-list" id="productsGrid"></div>
+            </main>
+        </div>
     </div>
 
-    <!-- Modal Detail View -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-
-            <div class="modal-image" id="modalImage">⚡</div>
-
+            <div class="modal-image" id="modalImage">🎹</div>
             <div class="modal-info">
-                <h2 class="modal-title" id="modalTitle">Pianino</h2>
-                <p class="modal-specs" id="modalSpecs">Model: -</p>
+                <h2 class="modal-title" id="modalTitle">Nazwa Produktu</h2>
+                <p class="modal-specs" id="modalSpecs">-</p>
                 <p class="modal-price" id="modalPrice">0 zł</p>
-
-                <p class="modal-description" id="modalDescription">Opis produktu</p>
+                <p class="modal-description" id="modalDescription">Opis...</p>
 
                 <div class="audio-section">
                     <label class="audio-label">🎵 Posłuchaj brzmienia</label>
-                    <audio class="audio-player" controls>
-                        <source src="sound/Chopin - Nocturne in E Flat Major (Op. 9 No. 2).mp3" type="audio/mpeg">
-                        Twoja przeglądarka nie obsługuje odtwarzacza audio.
+                    <audio id="pianoAudio" class="audio-player" controls>
+                        <source src="sound/piano-sample.mp3" type="audio/mpeg">
+                        Twoja przeglądarka nie obsługuje audio.
                     </audio>
                 </div>
 
@@ -155,34 +153,36 @@
     </div>
 
     <div class="footer">
-        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2 lata</p>
+        <p class="footer-text">© 2025 MusicStore. Wszystkie prawa zastrzeżone. | Autoryzowany dealer Yamaha & Kawai</p>
     </div>
+
+    <script src="cart.js"></script>
+    <script src="accessibility.js"></script>
 
     <script>
         const products = [
-            { id: 1, name: 'Yamaha GB1K PE', brand: 'Yamaha', type: 'Pianino', price: 52000, specs: 'Model: GB1K PE', desc: 'Akustyczny fortepian typu „baby grand” o długości 151 cm, łączący brzmienie zbliżone do większych fortepianów z kompaktowym rozmiarem.', image: 'images/yamaha-gb1k-pe.jpg' },
-            { id: 2, name: 'Kawai GL10 WH', brand: 'Kawai', type: 'Pianino', price: 51000, specs: 'Model: GL10 WH', desc: 'Przystępny cenowo fortepian, szanowanej na całym świecie marki.', image: 'images/kawai-gl-10-wh.jpg' },
-            { id: 3, name: 'Kawai GX 2 WH/P', brand: 'Kawai', type: 'Pianino', price: 125000, specs: 'Model: GX 2 WH/P', desc: 'Wykonany z najwyższą starannością instrument, który w 2017 roku otrzymał nagrodę "Product Excellence Award".', image: 'images/Kawai-GX-2-W-BWP.jpg' },
-            { id: 4, name: 'Kawai GX 7', brand: 'Kawai', type: 'Pianino', price: 220000, specs: 'Model: GX 7', desc: 'Zaprojektowany z myślą o najbardziej wymagających pianistach i salach koncertowych.', image: 'images/kawai-gx-7.jpg' }
+            { id: 1, name: 'Yamaha GB1K PE', brand: 'Yamaha', type: 'Pianino', price: 52000, specs: 'Długość: 151 cm, Wykończenie: Polished Ebony', desc: 'Akustyczny fortepian typu „baby grand”, łączący brzmienie zbliżone do większych fortepianów z kompaktowym rozmiarem.', image: 'images/yamaha-gb1k-pe.jpg' },
+            { id: 2, name: 'Kawai GL10 WH', brand: 'Kawai', type: 'Pianino', price: 51000, specs: 'Długość: 150 cm, Wykończenie: White Polished', desc: 'Przystępny cenowo fortepian, oferujący wyjątkową stabilność stroju dzięki mechanizmowi Millennium III.', image: 'images/kawai-gl-10-wh.jpg' },
+            { id: 3, name: 'Kawai GX 2 WH/P', brand: 'Kawai', type: 'Pianino', price: 125000, specs: 'Długość: 180 cm, Wykończenie: White Polished', desc: 'Wykonany z najwyższą starannością instrument, który otrzymał nagrodę "Product Excellence Award".', image: 'images/Kawai-GX-2-W-BWP.jpg' },
+            { id: 4, name: 'Kawai GX 7', brand: 'Kawai', type: 'Pianino', price: 220000, specs: 'Długość: 229 cm, Wykończenie: Polished Ebony', desc: 'Zaprojektowany z myślą o najbardziej wymagających pianistach i salach koncertowych. Potężne brzmienie.', image: 'images/kawai-gx-7.jpg' }
         ];
 
-        // DODANE: Zmienna do przechowywania ID
         let currentProductId = null;
 
         function displayProducts(filtered) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
 
-            filtered.forEach(product => {
+            filtered.forEach(p => {
                 const item = document.createElement('div');
                 item.className = 'product-list-item';
                 item.innerHTML = `
-                   <img src="${product.image}" alt="${product.name}" class="product-list-image" style="object-fit: cover;">
+                    <img src="${p.image}" alt="${p.name}" class="product-list-image" style="object-fit: contain; background: white;">
                     <div class="product-list-info">
-                        <div class="product-list-brand">${product.brand}</div>
-                        <h3 class="product-list-name">${product.name}</h3>
-                        <div class="product-list-price">${product.price} zł</div>
-                        <button class="btn-details" onclick="openModal(${product.id})">Szczegóły</button>
+                        <div class="product-list-brand">${p.brand}</div>
+                        <h3 class="product-list-name">${p.name}</h3>
+                        <div class="product-list-price">${p.price.toLocaleString()} zł</div>
+                        <button class="btn-details" onclick="openModal(${p.id})">Szczegóły</button>
                     </div>
                 `;
                 grid.appendChild(item);
@@ -191,86 +191,81 @@
             document.getElementById('resultCount').textContent = filtered.length;
         }
 
-        const params = new URLSearchParams(window.location.search);
-    const productId = params.get('product');
-
-    if (productId) {
-        const id = parseInt(productId);
-        const productExists = products.some(p => p.id === id);
-
-        if (productExists) {
-            openModal(id);
-        }
-    }
-
         function filterProducts() {
-            const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
-            const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
-            const selectedPrices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
+            const brands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
+            const prices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
 
-            let filtered = products;
+            let filtered = [...products];
 
-            if (selectedBrands.length > 0) {
-                filtered = filtered.filter(p => selectedBrands.some(b => p.brand.toLowerCase().includes(b.split('-').join(' '))));
+            if (brands.length > 0) {
+                filtered = filtered.filter(p => brands.includes(p.brand.toLowerCase()));
             }
 
-            if (selectedTypes.length > 0) {
-                filtered = filtered.filter(p => selectedTypes.some(t => p.type.toLowerCase() === t.replace('-', ' ')));
-            }
-
-            if (selectedPrices.length > 0) {
+            if (prices.length > 0) {
                 filtered = filtered.filter(p => {
-                    if (selectedPrices.includes('budget') && p.price < 60000) return true;
-                    if (selectedPrices.includes('mid') && p.price >= 60000 && p.price <= 180000) return true;
-                    if (selectedPrices.includes('premium') && p.price > 180000) return true;
+                    if (prices.includes('budget') && p.price < 60000) return true;
+                    if (prices.includes('mid') && p.price >= 60000 && p.price <= 180000) return true;
+                    if (prices.includes('premium') && p.price > 180000) return true;
                     return false;
                 });
             }
+
+            // Obsługa Sortowania
+            const sortValue = document.getElementById('sortPrice').value;
+            if (sortValue === 'asc') filtered.sort((a, b) => a.price - b.price);
+            else if (sortValue === 'desc') filtered.sort((a, b) => b.price - a.price);
 
             displayProducts(filtered);
         }
 
         function openModal(productId) {
-            // ZAPISANIE ID
             currentProductId = productId;
-            const product = products.find(p => p.id === productId);
-            document.getElementById('modalTitle').textContent = product.name;
-            document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
-            document.getElementById('modalPrice').textContent = product.price + ' zł';
-            document.getElementById('modalDescription').textContent = product.desc;
-            document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
+            const p = products.find(prod => prod.id === productId);
+            
+            document.getElementById('modalTitle').textContent = p.name;
+            document.getElementById('modalSpecs').textContent = `${p.specs} | Marka: ${p.brand}`;
+            document.getElementById('modalPrice').textContent = p.price.toLocaleString() + ' zł';
+            document.getElementById('modalDescription').textContent = p.desc;
+            document.getElementById('modalImage').innerHTML = `<img src="${p.image}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
+            
             document.getElementById('productModal').classList.add('show');
         }
 
         function closeModal() {
             document.getElementById('productModal').classList.remove('show');
-        }
-
-        // NOWA FUNKCJA DO KOSZYKA
-        function addToCartFromModal() {
-            if (!currentProductId) return;
-            const product = products.find(p => p.id === currentProductId);
-            addToCartGlobal(product.id, product.name, product.price, product.image);
-            closeModal();
+            // Zatrzymanie audio po zamknięciu
+            const audio = document.getElementById('pianoAudio');
+            audio.pause();
+            audio.currentTime = 0;
         }
 
         function clearFilters() {
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById('sortPrice').value = "";
             filterProducts();
         }
 
-        window.onclick = function (event) {
-            const modal = document.getElementById('productModal');
-            if (event.target === modal) {
-                closeModal();
+        function addToCartFromModal() {
+            const p = products.find(prod => prod.id === currentProductId);
+            if (typeof addToCartGlobal === 'function') {
+                addToCartGlobal(p.id, p.name, p.price, p.image);
+            } else {
+                alert("Dodano do koszyka: " + p.name);
             }
+            closeModal();
         }
 
+        // Zamykanie modala po kliknięciu poza treść
+        window.onclick = function(event) {
+            const pModal = document.getElementById('productModal');
+            const cModal = document.getElementById('cartModal');
+            if (event.target === pModal) closeModal();
+            if (event.target === cModal) closeCartModal();
+        }
+
+        // Inicjalizacja widoku
         displayProducts(products);
     </script>
-
-    <script src="cart.js"></script>
-    <script src="accessibility.js"></script>
 </body>
 
 </html>

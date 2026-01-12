@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gitary Akustyczne - Sklep Muzyczny</title>
+    <title>Gitary Akustyczne - MusicStore</title>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
 </head>
@@ -46,67 +46,76 @@
         </div>
     </div>
 
-    <div class="products-container">
-        <aside class="filters-sidebar">
-            <div class="filters-header"><h3>🔍 Filtry</h3></div>
-            
-            <div class="filter-group">
-                <h4 class="filter-title">Marka</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="harley benton" onchange="filterProducts()"> <span>Harley Benton</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="martin guitar" onchange="filterProducts()"> <span>Martin Guitar</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="epiphone" onchange="filterProducts()"> <span>Epiphone</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="brand" value="gibson" onchange="filterProducts()"> <span>Gibson</span></label>
+    <div class="main-wrapper">
+        <div class="products-container">
+            <aside class="filters-sidebar">
+                <div class="filters-header"><h3>🔍 Filtry</h3></div>
+                
+                <div class="filter-group">
+                    <h4 class="filter-title">MARKA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox"><input type="checkbox" name="brand" value="harley benton" onchange="filterProducts()"> <span>Harley Benton</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="brand" value="martin guitar" onchange="filterProducts()"> <span>Martin Guitar</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="brand" value="epiphone" onchange="filterProducts()"> <span>Epiphone</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="brand" value="gibson" onchange="filterProducts()"> <span>Gibson</span></label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="filter-group">
-                <h4 class="filter-title">KSZTAŁT PUDŁA</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox"><input type="checkbox" name="type" value="dreadnought" onchange="filterProducts()"> <span>Dreadnought</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="type" value="jumbo" onchange="filterProducts()"> <span>Jumbo</span></label>
+                <div class="filter-group">
+                    <h4 class="filter-title">KSZTAŁT PUDŁA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox"><input type="checkbox" name="type" value="dreadnought" onchange="filterProducts()"> <span>Dreadnought</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="type" value="jumbo" onchange="filterProducts()"> <span>Jumbo</span></label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="filter-group">
-                <h4 class="filter-title">CENA</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox"><input type="checkbox" name="price" value="budget" onchange="filterProducts()"> <span>Poniżej 500 zł</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="price" value="mid" onchange="filterProducts()"> <span>500 - 2000 zł</span></label>
-                    <label class="filter-checkbox"><input type="checkbox" name="price" value="premium" onchange="filterProducts()"> <span>Powyżej 2000 zł</span></label>
+                <div class="filter-group">
+                    <h4 class="filter-title">CENA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox"><input type="checkbox" name="price" value="budget" onchange="filterProducts()"> <span>Poniżej 500 zł</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="price" value="mid" onchange="filterProducts()"> <span>500 - 2000 zł</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="price" value="premium" onchange="filterProducts()"> <span>Powyżej 2000 zł</span></label>
+                    </div>
                 </div>
-            </div>
 
-            <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
-        </aside>
+                <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
+            </aside>
 
-        <main class="content-area">
-            <div class="content-header">
-                <h1 class="section-title">🎸 Gitary Akustyczne</h1>
-                <p class="result-count">Wyników: <span id="resultCount">0</span></p>
-            </div>
-            <div class="products-list" id="productsGrid"></div>
-        </main>
+            <main class="content-area">
+                <div class="content-header">
+                    <h1 class="section-title">🎸 Gitary Akustyczne</h1>
+                    
+                    <div class="sort-bar">
+                        <label for="sortPrice">Sortuj wg ceny:</label>
+                        <select id="sortPrice" onchange="filterProducts()">
+                            <option value="">Domyślnie</option>
+                            <option value="asc">Cena rosnąco</option>
+                            <option value="desc">Cena malejąco</option>
+                        </select>
+                    </div>
+
+                    <p class="result-count">Wyników: <span id="resultCount">0</span></p>
+                </div>
+                <div class="products-list" id="productsGrid"></div>
+            </main>
+        </div>
     </div>
 
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-
-            <div class="modal-image" id="modalImage">⚡</div>
-
+            <div class="modal-image" id="modalImage">🎸</div>
             <div class="modal-info">
                 <h2 class="modal-title" id="modalTitle">Gitara</h2>
                 <p class="modal-specs" id="modalSpecs">Model: -</p>
                 <p class="modal-price" id="modalPrice">0 zł</p>
-
                 <p class="modal-description" id="modalDescription">Opis produktu</p>
 
                 <div class="audio-section">
                     <label class="audio-label">🎵 Posłuchaj brzmienia</label>
-                    <audio class="audio-player" controls>
+                    <audio id="guitarAudio" class="audio-player" controls>
                         <source src="sound/demoakustyk.mp3" type="audio/mpeg">
-                        Twoja przeglądarka nie obsługuje odtwarzacza audio.
+                        Twoja przeglądarka nie obsługuje audio.
                     </audio>
                 </div>
 
@@ -134,20 +143,24 @@
         </div>
     </div>
 
+    <div class="footer">
+        <p class="footer-text">© 2025 MusicStore. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2 lata</p>
+    </div>
+
     <script src="cart.js"></script>
     <script src="accessibility.js"></script>
     
     <script>
         const products = [
-            { id: 101, name: 'Custom Line King-CE VS', brand: 'Harley Benton', type: 'Jumbo', price: 1249, specs: 'Jumbo z Cutaway', desc: 'Styl vintage i nowoczesne brzmienie.', image: 'images/clkcv.jpg' },
-            { id: 102, name: 'D-120NT', brand: 'Harley Benton', type: 'Dreadnought', price: 329, specs: 'Ożebrowanie X', desc: 'Brzemnienie prawie jak western', image: 'images/d120nt.jpg' },
-            { id: 103, name: 'D-10E-02 Sitka Sapele', brand: 'Martin Guitar', type: 'Dreadnought', price: 4099, specs: 'Lity świerk', desc: 'Gitara typu Western z przetwornikiem', image: 'images/d10e.jpg' },
-            { id: 104, name: 'D28', brand: 'Martin Guitar', type: 'Dreadnought', price: 17890, specs: 'Lity świerk', desc: 'Gitara typu Western', image: 'images/d28.jpg' },
-            { id: 105, name: 'Hummingbird Custom', brand: 'Gibson', type: 'Dreadnought', price: 17890, specs: 'Scalloped X-bracing', desc: 'Acoustic Guitar with Pickup', image: 'images/hummingbird.jpg' },
-            { id: 106, name: 'Doves in Flight AN', brand: 'Gibson', type: 'Dreadnought', price: 29490, specs: 'Custom Shop', desc: 'Gitara typu western', image: 'images/doves.jpg' },
-            { id: 107, name: 'J-200 Studio Vintage Sunburst', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Jumbo z Cutaway', desc: 'Streel-String Guitar with Pickup', image: 'images/j200.jpg' },
-            { id: 108, name: 'J-200 Studio EC VS', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Super Jumbo z Cutaway', desc: 'Acoustic Guitar with Pickup', image: 'images/j200studio.jpg' },
-            { id: 109, name: 'J-200 Studio Natural', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Jumbo z Cutaway', desc: 'Streel-String Guitar with Pickup', image: 'images/j200natural.jpg' },
+            { id: 101, name: 'Custom Line King-CE VS', brand: 'Harley Benton', type: 'Jumbo', price: 1249, specs: 'Jumbo z Cutaway', desc: 'Styl vintage i nowoczesne brzmienie dla wymagających.', image: 'images/clkcv.jpg' },
+            { id: 102, name: 'D-120NT', brand: 'Harley Benton', type: 'Dreadnought', price: 329, specs: 'Ożebrowanie X', desc: 'Świetna gitara na start, brzmienie typu western.', image: 'images/d120nt.jpg' },
+            { id: 103, name: 'D-10E-02 Sitka Sapele', brand: 'Martin Guitar', type: 'Dreadnought', price: 4099, specs: 'Lity świerk', desc: 'Profesjonalna gitara typu Western z wbudowanym przetwornikiem.', image: 'images/d10e.jpg' },
+            { id: 104, name: 'D28', brand: 'Martin Guitar', type: 'Dreadnought', price: 17890, specs: 'Lity świerk', desc: 'Legenda wśród gitar akustycznych. Standard rynkowy.', image: 'images/d28.jpg' },
+            { id: 105, name: 'Hummingbird Custom', brand: 'Gibson', type: 'Dreadnought', price: 17890, specs: 'Scalloped X-bracing', desc: 'Ikoniczny wygląd i niezrównana głębia dźwięku.', image: 'images/hummingbird.jpg' },
+            { id: 106, name: 'Doves in Flight AN', brand: 'Gibson', type: 'Dreadnought', price: 29490, specs: 'Custom Shop', desc: 'Dzieło sztuki z Custom Shop Gibsona. Dla kolekcjonerów.', image: 'images/doves.jpg' },
+            { id: 107, name: 'J-200 Studio Vintage Sunburst', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Jumbo z Cutaway', desc: 'Klasyczne Jumbo w przystępnej cenie od Epiphone.', image: 'images/j200.jpg' },
+            { id: 108, name: 'J-200 Studio EC VS', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Super Jumbo z Cutaway', desc: 'Duże pudło, duży dźwięk. Idealna do gry rytmicznej.', image: 'images/j200studio.jpg' },
+            { id: 109, name: 'J-200 Studio Natural', brand: 'Epiphone', type: 'Jumbo', price: 2299, specs: 'Jumbo z Cutaway', desc: 'Naturalne wykończenie i potężna projekcja dźwięku.', image: 'images/j200natural.jpg' },
         ];
 
         let currentProductId = null;
@@ -156,7 +169,6 @@
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
             filtered.forEach(product => {
-                // Jeśli brak obrazka, użyj placeholdera
                 const imgSource = product.image ? product.image : `https://placehold.co/400x400/EEE/31343C?text=${encodeURIComponent(product.name)}`;
                 
                 const item = document.createElement('div');
@@ -166,7 +178,7 @@
                     <div class="product-list-info">
                         <div class="product-list-brand">${product.brand}</div>
                         <h3 class="product-list-name">${product.name}</h3>
-                        <div class="product-list-price">${product.price} zł</div>
+                        <div class="product-list-price">${product.price.toLocaleString()} zł</div>
                         <button class="btn-details" onclick="openProductModal(${product.id})">Szczegóły</button>
                     </div>
                 `;
@@ -176,11 +188,11 @@
         }
 
         function filterProducts() {
-            const brands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
-            const types = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+            const brands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value.toLowerCase());
+            const types = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value.toLowerCase());
             const prices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
 
-            let filtered = products;
+            let filtered = [...products];
 
             if (brands.length > 0) filtered = filtered.filter(p => brands.some(b => p.brand.toLowerCase().includes(b)));
             if (types.length > 0) filtered = filtered.filter(p => types.some(t => p.type.toLowerCase().includes(t)));
@@ -194,35 +206,57 @@
                 });
             }
 
+            const sortValue = document.getElementById('sortPrice').value;
+            if (sortValue === 'asc') filtered.sort((a, b) => a.price - b.price);
+            else if (sortValue === 'desc') filtered.sort((a, b) => b.price - a.price);
+
             displayProducts(filtered);
         }
 
         function clearFilters() {
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById('sortPrice').value = "";
             filterProducts();
         }
 
         function openProductModal(productId) {
             const product = products.find(p => p.id === productId);
-            currentProductId = productId; // WAŻNE: Zapisujemy ID
+            currentProductId = productId;
 
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
-            document.getElementById('modalPrice').textContent = product.price + ' zł';
+            document.getElementById('modalPrice').textContent = product.price.toLocaleString() + ' zł';
             document.getElementById('modalDescription').textContent = product.desc;
-
             document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
 
             document.getElementById('productModal').classList.add('show');
         }
 
-        function closeModal() { document.getElementById('productModal').classList.remove('show'); }
+        function closeModal() { 
+            document.getElementById('productModal').classList.remove('show');
+            const audio = document.getElementById('guitarAudio');
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').classList.remove('show');
+        }
 
         function addToCartFromModal() {
             if(!currentProductId) return;
             const product = products.find(p => p.id === currentProductId);
-            addToCartGlobal(product.id, product.name, product.price, product.image);
+            if (typeof addToCartGlobal === 'function') {
+                addToCartGlobal(product.id, product.name, product.price, product.image);
+            }
             closeModal();
+        }
+
+        window.onclick = function(event) {
+            const pModal = document.getElementById('productModal');
+            const cModal = document.getElementById('cartModal');
+            if (event.target === pModal) closeModal();
+            if (event.target === cModal) closeCartModal();
         }
 
         displayProducts(products);

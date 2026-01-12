@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keyboardy - Sklep Muzyczny</title>
+    <title>Keyboardy - MusicStore</title>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
 </head>
@@ -43,80 +43,63 @@
 
     <div class="breadcrumb">
         <div class="breadcrumb-content">
-            <a href="index.html">Sklep</a> / <a href="keyboardy.html">Keyboardy</a> 
+            <a href="index.html">Sklep</a> / <span>Keyboardy</span> 
         </div>
     </div>
 
-    <div class="products-container">
-        <aside class="filters-sidebar">
-            <div class="filters-header">
-                <h3>🔍 Filtry</h3>
-            </div>
+    <div class="main-wrapper">
+        <div class="products-container">
+            <aside class="filters-sidebar">
+                <div class="filters-header"><h3>🔍 Filtry</h3></div>
 
-            <div class="filter-group">
-                <h4 class="filter-title">MARKA</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="casio" onchange="filterProducts()">
-                        <span>Casio</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()">
-                        <span>Yamaha</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="brand" value="korg" onchange="filterProducts()">
-                        <span>Korg</span>
-                    </label>
+                <div class="filter-group">
+                    <h4 class="filter-title">MARKA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox"><input type="checkbox" name="brand" value="casio" onchange="filterProducts()"> <span>Casio</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="brand" value="yamaha" onchange="filterProducts()"> <span>Yamaha</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="brand" value="korg" onchange="filterProducts()"> <span>Korg</span></label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="filter-group">
-                <h4 class="filter-title">KLAWIATURA</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="dynamiczna" onchange="filterProducts()">
-                        <span>Dynamiczna</span>
-                    </label>
+                <div class="filter-group">
+                    <h4 class="filter-title">KLAWIATURA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox"><input type="checkbox" name="type" value="dynamiczna" onchange="filterProducts()"> <span>Dynamiczna</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="type" value="bez dynamiki" onchange="filterProducts()"> <span>Bez dynamiki</span></label>
+                    </div>
                 </div>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="type" value="bez dynamiki" onchange="filterProducts()">
-                        <span>Bez dynamiki</span>
-                    </label>
+
+                <div class="filter-group">
+                    <h4 class="filter-title">CENA</h4>
+                    <div class="filter-options">
+                        <label class="filter-checkbox"><input type="checkbox" name="price" value="budget" onchange="filterProducts()"> <span>Poniżej 1000 zł</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="price" value="mid" onchange="filterProducts()"> <span>1000 - 3000 zł</span></label>
+                        <label class="filter-checkbox"><input type="checkbox" name="price" value="premium" onchange="filterProducts()"> <span>Powyżej 3000 zł</span></label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="filter-group">
-                <h4 class="filter-title">CENA</h4>
-                <div class="filter-options">
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="price" value="budget" onchange="filterProducts()">
-                        <span>Poniżej 1000 zł</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="price" value="mid" onchange="filterProducts()">
-                        <span>1000 - 3000 zł</span>
-                    </label>
-                    <label class="filter-checkbox">
-                        <input type="checkbox" name="price" value="premium" onchange="filterProducts()">
-                        <span>Powyżej 3000 zł</span>
-                    </label>
+                <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
+            </aside>
+
+            <main class="content-area">
+                <div class="content-header">
+                    <h1 class="section-title">🎹 Keyboardy</h1>
+                    
+                    <div class="sort-bar">
+                        <label for="sortPrice">Sortuj wg ceny:</label>
+                        <select id="sortPrice" onchange="filterProducts()">
+                            <option value="">Domyślnie</option>
+                            <option value="asc">Cena rosnąco</option>
+                            <option value="desc">Cena malejąco</option>
+                        </select>
+                    </div>
+
+                    <p class="result-count">Wyników: <span id="resultCount">0</span></p>
                 </div>
-            </div>
 
-            <button class="btn-filter" onclick="clearFilters()">Wyczyść filtry</button>
-        </aside>
-
-        <main class="content-area">
-            <div class="content-header">
-                <h1 class="section-title"> Klasyczne</h1>
-                <p class="result-count">Wyników: <span id="resultCount">9</span></p>
-            </div>
-
-            <div class="products-list" id="productsGrid">
-                </div>
-        </main>
+                <div class="products-list" id="productsGrid"></div>
+            </main>
+        </div>
     </div>
 
     <div id="productModal" class="modal">
@@ -130,9 +113,9 @@
                 <p class="modal-description" id="modalDescription">Opis produktu</p>
                 <div class="audio-section">
                     <label class="audio-label">🎵 Posłuchaj brzmienia</label>
-                    <audio class="audio-player" controls>
+                    <audio id="keyboardAudio" class="audio-player" controls>
                         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                        Twoja przeglądarka nie obsługuje odtwarzacza audio.
+                        Twoja przeglądarka nie obsługuje audio.
                     </audio>
                 </div>
                 <div class="modal-buttons">
@@ -160,9 +143,12 @@
     </div>
 
     <div class="footer">
-        <p class="footer-text">© 2025 MuzycznyShop. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2 lata</p>
+        <p class="footer-text">© 2025 MusicStore. Wszystkie prawa zastrzeżone. | Dostawa w całej Polsce | Gwarancja 2 lata</p>
     </div>
 
+    <script src="cart.js"></script>
+    <script src="accessibility.js"></script>
+    
     <script>
         const products = [
             { id: 1, name: 'Yamaha PSR E283', brand: 'Yamaha', type: 'Bez dynamiki', price: 550, specs: 'Model: PSR E283', desc: 'Keyboard przeznaczony dla dzieci oraz początkujących, który wprowadzi Cię w świat wspaniałych emocji i zabawy.', image: 'images/yamaha-psr-e283.jpg' },
@@ -190,7 +176,7 @@
                     <div class="product-list-info">
                         <div class="product-list-brand">${product.brand}</div>
                         <h3 class="product-list-name">${product.name}</h3>
-                        <div class="product-list-price">${product.price} zł</div>
+                        <div class="product-list-price">${product.price.toLocaleString()} zł</div>
                         <button class="btn-details" onclick="openModal(${product.id})">Szczegóły</button>
                     </div>
                 `;
@@ -201,17 +187,17 @@
         }
 
         function filterProducts() {
-            const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
-            const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+            const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value.toLowerCase());
+            const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value.toLowerCase());
             const selectedPrices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
 
-            let filtered = products;
+            let filtered = [...products];
 
             if (selectedBrands.length > 0) {
-                filtered = filtered.filter(p => selectedBrands.some(b => p.brand.toLowerCase().includes(b.split('-').join(' '))));
+                filtered = filtered.filter(p => selectedBrands.some(b => p.brand.toLowerCase().includes(b)));
             }
             if (selectedTypes.length > 0) {
-                filtered = filtered.filter(p => selectedTypes.some(t => p.type.toLowerCase() === t.replace('-', ' ')));
+                filtered = filtered.filter(p => selectedTypes.includes(p.type.toLowerCase()));
             }
             if (selectedPrices.length > 0) {
                 filtered = filtered.filter(p => {
@@ -221,6 +207,15 @@
                     return false;
                 });
             }
+
+            // LOGIKA SORTOWANIA
+            const sortValue = document.getElementById('sortPrice').value;
+            if (sortValue === 'asc') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortValue === 'desc') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
+
             displayProducts(filtered);
         }
 
@@ -229,7 +224,7 @@
             const product = products.find(p => p.id === productId);
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalSpecs').textContent = `${product.specs} | ${product.brand}`;
-            document.getElementById('modalPrice').textContent = product.price + ' zł';
+            document.getElementById('modalPrice').textContent = product.price.toLocaleString() + ' zł';
             document.getElementById('modalDescription').textContent = product.desc;
             document.getElementById('modalImage').innerHTML = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">`;
             document.getElementById('productModal').classList.add('show');
@@ -237,30 +232,41 @@
 
         function closeModal() {
             document.getElementById('productModal').classList.remove('show');
+            const audio = document.getElementById('keyboardAudio');
+            if(audio) { audio.pause(); audio.currentTime = 0; }
+        }
+
+        function openCartModal() {
+            document.getElementById('cartModal').classList.add('show');
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').classList.remove('show');
         }
 
         function addToCartFromModal() {
             if (!currentProductId) return;
             const product = products.find(p => p.id === currentProductId);
-            addToCartGlobal(product.id, product.name, product.price, product.image);
+            if (typeof addToCartGlobal === 'function') {
+                addToCartGlobal(product.id, product.name, product.price, product.image);
+            }
             closeModal();
         }
 
         function clearFilters() {
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById('sortPrice').value = "";
             filterProducts();
         }
 
         window.onclick = function (event) {
-            const modal = document.getElementById('productModal');
-            if (event.target === modal) {
-                closeModal();
-            }
+            const pModal = document.getElementById('productModal');
+            const cModal = document.getElementById('cartModal');
+            if (event.target === pModal) closeModal();
+            if (event.target === cModal) closeCartModal();
         }
 
         displayProducts(products);
     </script>
-    <script src="cart.js"></script>
-    <script src="accessibility.js"></script>
 </body>
 </html>
