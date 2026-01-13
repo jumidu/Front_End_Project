@@ -1,4 +1,4 @@
-// cart.js - Logika koszyka
+// cart.js - Logika koszyka zgodna z Concept Art
 const CART_KEY = 'musicStoreCart';
 let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
@@ -11,40 +11,32 @@ function addToCartGlobal(id, name, price, image) {
     saveCart();
     updateCartIcon();
     alert(`✅ Dodano: ${name}`);
+    // Jeśli koszyk jest otwarty, odśwież widok (np. w trybie checkout)
+    if (document.getElementById('cartModal')?.classList.contains('show')) {
+        checkout(); // Odświeża cały widok checkoutu
+    }
 }
 
 function removeFromCart(index) {
     cart.splice(index, 1);
     saveCart();
     updateCartIcon();
-    renderCartItems();
+    checkout(); // Odświeżamy widok checkoutu po usunięciu
 }
 
 // --- UI MODAL ---
 function updateCartIcon() {
-    // 1. Pobieramy wszystkie elementy o tej klasie (np. w menu mobilnym i zwykłym)
     const btns = document.querySelectorAll('.btn-icon-cart');
+    if (btns.length === 0) return;
 
-    // 2. Sprawdzamy, czy w ogóle jakieś znaleziono
-    if (btns.length === 0) {
-        console.warn("Błąd: Nie znaleziono elementu o klasie .btn-icon-cart w HTML!");
-        return;
-    }
-
-    // 3. Aktualizujemy każdy znaleziony przycisk
     btns.forEach(btn => {
-        // Opcja A: Jeśli w przycisku jest tylko tekst
         btn.innerHTML = `🛒 Koszyk (${cart.length})`;
-        
-        // Opcja B (Lepsza): Jeśli masz np. <span id="cart-count"></span> wewnątrz przycisku
-        // Wtedy zamiast btn.innerHTML użyj:
-        // const counter = btn.querySelector('span');
-        // if(counter) counter.innerText = cart.length;
     });
 }
 
 function openCartModal() {
-    renderCartItems();
+    // Od razu otwieramy w trybie "Checkout" (lista + formularz), jak na concept arcie
+    checkout();
     document.getElementById('cartModal')?.classList.add('show');
 }
 
@@ -52,81 +44,121 @@ function closeCartModal() {
     document.getElementById('cartModal')?.classList.remove('show');
 }
 
-// GŁÓWNY WIDOK KOSZYKA
-function renderCartItems() {
-    const container = document.getElementById('cartItemsContainer');
-    const buttons = document.querySelector('#cartModal .modal-buttons');
-    const summary = document.querySelector('.cart-summary');
-    
-    if (!container) return;
-    if (summary) summary.style.display = 'flex'; // Pokaż pasek sumy
+// GŁÓWNA FUNKCJA RENDERUJĄCA WIDOK "CONCEPT ART"
+function checkout() {
+    const modalContent = document.querySelector('#cartModal .modal-content');
+    if (!modalContent) return;
 
-    if (cart.length === 0) {
-        container.innerHTML = '<p class="empty-msg">Koszyk jest pusty</p>';
-        return;
+    // Czyścimy standardowe przyciski modala, bo będą wewnątrz layoutu
+    const standardButtons = modalContent.querySelector('.modal-buttons');
+    if (standardButtons) standardButtons.style.display = 'none';
+    
+    // Ukrywamy standardowy nagłówek i listę, jeśli istnieją (zależnie od HTML)
+    const oldTitle = modalContent.querySelector('h2.section-title');
+    if (oldTitle) oldTitle.style.display = 'none';
+    const oldList = document.getElementById('cartItemsContainer');
+    if (oldList) oldList.style.display = 'none';
+    const oldSummary = document.querySelector('.cart-summary');
+    if (oldSummary) oldSummary.style.display = 'none';
+
+
+    // Sprawdzamy, czy kontener layoutu już istnieje, jeśli nie - tworzymy go
+    let layoutContainer = document.getElementById('conceptArtLayout');
+    
+    if (!layoutContainer) {
+        layoutContainer = document.createElement('div');
+        layoutContainer.id = 'conceptArtLayout';
+        layoutContainer.className = 'cart-layout';
+        modalContent.appendChild(layoutContainer);
     }
 
-    container.innerHTML = cart.map((item, i) => `
-        <div class="simple-cart-item">
-            <img src="${item.image}" alt="">
-            <div class="item-details">
-                <h4>${item.name}</h4>
-                <span>${item.price} zł</span>
+    // Generujemy listę produktów HTML
+    let itemsHTML = '';
+    if (cart.length === 0) {
+        itemsHTML = '<p class="empty-msg">Twój koszyk jest pusty.</p>';
+    } else {
+        itemsHTML = cart.map((item, i) => `
+            <div class="cart-item-row">
+                <img src="${item.image}" alt="" class="cart-item-img" onerror="this.src='https://placehold.co/50?text=Foto'">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">${item.price} zł</div>
+                </div>
+                <button class="btn-remove-small" onclick="removeFromCart(${i})">Usuń</button>
             </div>
-            <button class="btn-remove" onclick="removeFromCart(${i})">Usuń</button>
+        `).join('');
+    }
+
+    // Wypełniamy kontener strukturą z concept artu
+    layoutContainer.innerHTML = `
+        <div class="cart-left-column">
+            <h2 class="cart-column-title">Twój Koszyk</h2>
+            <div class="cart-items-scroll">
+                ${itemsHTML}
+            </div>
+            <div class="cart-total-section">
+                Suma: <span class="total-price">${getCartTotal()} zł</span>
+            </div>
         </div>
-    `).join('');
 
-    document.getElementById('cartTotalDisplay').innerText = `${getCartTotal()} zł`;
-
-    buttons.innerHTML = `
-        <button class="btn-modal btn-buy" onclick="checkout()">✅ Przejdź do kasy</button>
-        <button class="btn-modal btn-close" onclick="closeCartModal()">Zamknij</button>
-    `;
-}
-
-// WIDOK KASY (FORMULARZ)
-function checkout() {
-    const container = document.getElementById('cartItemsContainer');
-    const buttons = document.querySelector('#cartModal .modal-buttons');
-    const summary = document.querySelector('.cart-summary');
-
-    if (summary) summary.style.display = 'none'; // Ukrywamy pasek, bo suma będzie w formularzu
-
-    container.innerHTML = `
-        <div class="checkout-wrapper">
-            <div class="checkout-header">
-                <h3>Podsumowanie zamówienia: <strong>${getCartTotal()} zł</strong></h3>
-            </div>
+        <div class="cart-right-column">
+            <span class="close-cross" onclick="closeCartModal()">&times;</span>
             
-            <form id="orderForm" class="simple-form">
-                <input type="text" id="orderName" placeholder="Imię i nazwisko *" required>
-                <input type="email" id="orderEmail" placeholder="Adres e-mail *" required>
-                <input type="text" id="orderAddress" placeholder="Ulica i numer domu *" required>
-                <div class="form-row">
-                    <input type="text" id="orderPostal" placeholder="Kod *" required pattern="[0-9]{2}-[0-9]{3}">
+            <h2 class="cart-column-title">📦 Dane do wysyłki</h2>
+            <form id="orderForm" class="checkout-form">
+                <div class="form-group">
+                    <input type="text" id="orderName" placeholder="Imię i nazwisko *" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="orderEmail" placeholder="Email *" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="orderAddress" placeholder="Adres (ulica, nr) *" required>
+                </div>
+                <div class="form-row-split">
+                    <input type="text" id="orderPostal" placeholder="Kod pocztowy *" required>
                     <input type="text" id="orderCity" placeholder="Miasto *" required>
                 </div>
-                
-                <div class="payment-section">
-                    <h4>Metoda płatności:</h4>
-                    <label><input type="radio" name="payment" value="blik" checked> BLIK</label>
-                    <label><input type="radio" name="payment" value="card"> Karta</label>
-                    <label><input type="radio" name="payment" value="transfer"> Przelew</label>
+
+                <h2 class="cart-column-title mt-4">💳 Metoda płatności</h2>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="blik" checked>
+                        <span>BLIK</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="card">
+                        <span>Karta płatnicza</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="transfer">
+                        <span>Przelew bankowy</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="cod">
+                        <span>Przy odbiorze</span>
+                    </label>
                 </div>
             </form>
-        </div>
-    `;
 
-    buttons.innerHTML = `
-        <button class="btn-modal btn-buy" onclick="confirmOrder()">Potwierdzam zakup</button>
-        <button class="btn-modal btn-close" onclick="renderCartItems()">Wróć do koszyka</button>
+            <div class="checkout-actions">
+                <button class="btn-checkout-confirm" onclick="confirmOrder()">✅ Zamawiam</button>
+                <button class="btn-checkout-back" onclick="closeCartModal()">Wróć do sklepu</button>
+            </div>
+        </div>
     `;
 }
 
 function confirmOrder() {
     const form = document.getElementById('orderForm');
-    if (!form.checkValidity()) return form.reportValidity();
+    if (cart.length === 0) {
+        alert("Koszyk jest pusty!");
+        return;
+    }
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
     
     alert(`Dziękujemy za zamówienie na kwotę ${getCartTotal()} zł!`);
     cart = [];
@@ -135,4 +167,5 @@ function confirmOrder() {
     closeCartModal();
 }
 
+// Inicjalizacja
 document.addEventListener('DOMContentLoaded', updateCartIcon);

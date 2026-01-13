@@ -910,3 +910,259 @@ body {
     border-radius: 5px;
 }
 .payment-section label { margin-right: 15px; cursor: pointer; font-size: 14px; }
+
+/* ========================================= */
+/* === CONCEPT ART CART STYLES === */
+/* ========================================= */
+
+/* Nadpisanie szerokości modala dla nowego layoutu */
+.cart-modal-content {
+    max-width: 900px !important; /* Szersze okno dla dwóch kolumn */
+    width: 95%;
+    padding: 0; /* Padding obsłużymy wewnątrz kolumn */
+    overflow: hidden; /* Żeby rogi były zaokrąglone */
+    border-radius: 12px;
+    display: flex; /* Flexbox dla layoutu */
+    flex-direction: column; /* Fallback dla mobile */
+}
+
+/* Układ dwukolumnowy */
+.cart-layout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    min-height: 550px;
+}
+
+/* --- LEWA KOLUMNA (PRODUKTY) --- */
+.cart-left-column {
+    flex: 1; /* 50% szerokości (lub mniej, zależnie od prawej) */
+    padding: 30px;
+    background-color: var(--color-white);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-items-scroll {
+    flex: 1;
+    overflow-y: auto;
+    margin-right: -10px; /* Miejsce na scrollbar */
+    padding-right: 10px;
+    max-height: 400px;
+}
+
+/* Pojedynczy wiersz produktu */
+.cart-item-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--color-text);
+    margin-bottom: 4px;
+}
+
+.cart-item-price {
+    font-size: 13px;
+    color: #666;
+}
+
+.btn-remove-small {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-remove-small:hover {
+    background-color: #e60000;
+}
+
+.cart-total-section {
+    margin-top: auto;
+    padding-top: 20px;
+    font-size: 18px;
+    color: #555;
+    border-top: 2px solid #f0f0f0;
+}
+
+.cart-total-section .total-price {
+    font-weight: bold;
+    color: var(--color-text);
+    float: right;
+}
+
+/* --- PRAWA KOLUMNA (FORMULARZ) --- */
+.cart-right-column {
+    flex: 1;
+    padding: 30px;
+    background-color: var(--color-white); /* Lub lekko szary jeśli wolisz */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-column-title {
+    font-size: 20px;
+    color: var(--color-primary); /* Niebieski z concept artu */
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center; /* Wyśrodkowane tytuły */
+}
+
+/* Krzyżyk zamykania (wewnątrz prawej kolumny na górze) */
+.close-cross {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #aaa;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.close-cross:hover {
+    color: #333;
+}
+
+/* Style formularza */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkout-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+.checkout-form input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.form-row-split {
+    display: flex;
+    gap: 10px;
+}
+
+.form-row-split input {
+    width: 50%;
+}
+
+/* Opcje płatności */
+.mt-4 { margin-top: 25px; }
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.payment-option input[type="radio"] {
+    width: auto;
+    margin: 0;
+    accent-color: var(--color-primary);
+}
+
+/* Dolne przyciski */
+.checkout-actions {
+    margin-top: auto; /* Dopycha do dołu */
+    padding-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.btn-checkout-confirm {
+    background-color: #2E86AB; /* Kolor z concept artu */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    flex: 1;
+}
+
+.btn-checkout-confirm:hover {
+    background-color: #247596;
+}
+
+.btn-checkout-back {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    flex: 1;
+}
+
+.btn-checkout-back:hover {
+    background-color: #d0d0d0;
+}
+
+/* --- RESPANSYWNOŚĆ (MOBILE) --- */
+@media (max-width: 768px) {
+    .cart-layout {
+        flex-direction: column;
+        overflow-y: auto; /* Scroll całego layoutu na mobile */
+    }
+
+    .cart-left-column {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 20px;
+        max-height: 300px; /* Ograniczona wysokość listy na mobile */
+    }
+    
+    .cart-right-column {
+        padding: 20px;
+    }
+
+    .cart-modal-content {
+        max-height: 95vh;
+        width: 95%;
+    }
+}
