@@ -23,8 +23,6 @@
 
             <div class="nav-buttons">
                 <button class="btn-icon" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
-                <button class="btn-icon"><img src="images/search.svg" class="icon" onerror="this.style.display='none'"> Szukaj</button>
-                <button class="btn-icon">👤 Konto</button>
                 <button class="btn-icon-cart" onclick="openCartModal()">🛒 Koszyk (0)</button>
                 <button class="btn-icon" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
             </div>
@@ -168,6 +166,20 @@
         ];
 
         let currentProductId = null;
+
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('product');
+
+        if (productId) {
+            const id = parseInt(productId);
+            const productExists = products.some(p => p.id === id);
+
+            if (productExists) {
+                openModal(id);
+            }
+        }
+
+        displayProducts(products);
 
         function displayProducts(filtered) {
             const grid = document.getElementById('productsGrid');
