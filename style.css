@@ -1,13 +1,21 @@
 :root {
-    --color-primary: #2E86AB;
-    --color-secondary: #A23B72;
-    --color-accent: #F18F01;
-    --color-bg: #F8F9FA;
-    --color-text: #1F2937;
-    --color-border: #E5E7EB;
+    /* Kolory główne – podbity kontrast */
+    --color-primary: #1E40AF;     /* granat (lepszy kontrast niż #2E86AB) */
+    --color-secondary: #7C2D12;   /* ciemniejszy burgund */
+    --color-accent: #B45309;      /* ciemniejszy pomarańcz (WCAG OK) */
+
+    /* Tła */
+    --color-bg: #F9FAFB;          /* bardzo jasne, ale nie czyste białe */
     --color-white: #FFFFFF;
 
-    /* Definicje rozmiarów czcionek */
+    /* Tekst */
+    --color-text: #111827;        /* prawie czarny (AAA) */
+    --color-text-muted: #374151;  /* zamiast #6B7280 */
+
+    /* Obramowania */
+    --color-border: #CBD5E1;      /* wyraźniejsze krawędzie */
+
+    /* Czcionki – bez zmian */
     --fs-xs: 12px;
     --fs-sm: 13px;
     --fs-md: 14px;
@@ -864,14 +872,19 @@ body {
 }
 
 .dark-mode {
-    --color-bg: #0F172A;
+    --color-bg: #020617;
     --color-white: #020617;
-    --color-text: #E5E7EB;
-    --color-border: #1E293B;
+
+    --color-text: #F8FAFC;
+    --color-text-muted: #CBD5E1;
+
+    --color-border: #334155;
+
     --color-primary: #60A5FA;
     --color-secondary: #A78BFA;
-    --color-accent: #FBBF24;
+    --color-accent: #F59E0B;
 }
+
 .product-card-link {
     text-decoration: none;
     color: inherit;
