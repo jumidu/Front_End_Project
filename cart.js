@@ -102,7 +102,6 @@ function checkout() {
         </div>
 
         <div class="cart-right-column">
-            <span class="close-cross" onclick="closeCartModal()">&times;</span>
             
             <h2 class="cart-column-title">📦 Dane do wysyłki</h2>
             <form id="orderForm" class="checkout-form">
