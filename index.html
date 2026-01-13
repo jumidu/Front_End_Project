@@ -27,10 +27,10 @@
             </div>
 
             <div class="nav-buttons">
-                <button class="btn-icon btn-access" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
+                <button class="btn-icon" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
                 <button class="btn-icon"><img src="images/search.svg" class="icon" onerror="this.style.display='none'"> Szukaj</button>
                 <button class="btn-icon">👤 Konto</button>
-                <button class="btn-icon" onclick="openCartModal()">🛒 Koszyk (0)</button>
+                <button class="btn-icon-cart" onclick="openCartModal()">🛒 Koszyk (0)</button>
                 <button class="btn-icon" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
             </div>
         </div>
@@ -121,7 +121,7 @@
     </a>
 
     <div id="cartModal" class="modal">
-        <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-content" style="max-width: 700px;">
             <span class="close-btn" onclick="closeCartModal()">&times;</span>
             <h2 class="section-title" style="font-size: 24px;">Twój Koszyk</h2>
             <div id="cartItemsContainer" class="cart-items-list"></div>

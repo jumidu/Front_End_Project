@@ -24,10 +24,10 @@
             </div>
 
             <div class="nav-buttons">
-                <button class="btn-icon btn-access" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
+                <button class="btn-icon" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
                 <button class="btn-icon"><img src="images/search.svg" class="icon" onerror="this.style.display='none'"> Szukaj</button>
                 <button class="btn-icon">👤 Konto</button>
-                <button class="btn-icon" onclick="openCartModal()">🛒 Koszyk (0)</button>
+                <button class="btn-icon-cart" onclick="openCartModal()">🛒 Koszyk (0)</button>
                 <button class="btn-icon" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
             </div>
         </div>
@@ -88,6 +88,22 @@
         </div>
     </div>
 
+    <div id="cartModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+            <h2 class="section-title" style="font-size: 24px;">Twój Koszyk</h2>
+            <div id="cartItemsContainer" class="cart-items-list"></div>
+            <div class="cart-summary">
+                <span>Suma:</span>
+                <span id="cartTotalDisplay">0 zł</span>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal btn-buy" onclick="checkout()">✅ Zamawiam</button>
+                <button class="btn-modal btn-close" onclick="closeCartModal()">Wróć</button>
+            </div>
+        </div>
+    </div>
+
 
     </div>
     <!-- Footer (identyczny jak na głównej) -->
@@ -106,6 +122,7 @@
         });
     </script>
     <script src="accessibility.js"></script>
+    <script src="cart.js"></script>
 </body>
 
 </html>
