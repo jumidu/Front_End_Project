@@ -275,6 +275,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
+    padding: 15px;
 }
 
 .product-price {
@@ -888,7 +889,16 @@ body {
 .product-card-link {
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: block; /* Ważne, żeby link zajmował przestrzeń */
+}
+/* Aby footer był na dole */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.product-info-top {
+    padding: 10px; /* Przykładowy padding */
 }
 /* Prosta lista produktów */
 .simple-cart-item {

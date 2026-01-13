@@ -4,33 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep Muzyczny</title>
+    <title>Sklep Muzyczny - Gitary, Pianina, Keyboardy</title>
     <link rel="stylesheet" href="style.css">
     <script src="theme.js"></script>
-    <meta name="description" content="Main page for a music store">
+    <meta name="description" content="Najlepszy sklep muzyczny w Polsce. Oferujemy gitary, pianina, keyboardy i wzmacniacze topowych marek: Yamaha, Fender, Gibson. Szybka wysyłka.">
 </head>
 
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="logo">
-                <!-- dodane -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo-icon" viewBox="0 0 16 16">
-                    <path
-                        d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
                     <path fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z" />
                     <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
                 </svg>
-                <!-- dodane -->
-                <span class="logo-text"> MusicStore</span>
-                <!-- SVG BRZYDKO w kodzie  ale pozwala zmienic latwo przez css kolor itp -->
+                <span class="logo-text">MusicStore</span>
             </div>
 
             <div class="nav-buttons">
-                <button class="btn-icon" onclick="cycleFontSize()" title="Zmień rozmiar tekstu">A+</button>
+                <button class="btn-icon" onclick="cycleFontSize()" aria-label="Zmień rozmiar tekstu" title="Zmień rozmiar tekstu">A+</button>
+                <button class="btn-icon">
+                    <img src="images/search.svg" class="icon" alt="" onerror="this.style.display='none'"> 
+                    Szukaj
+                </button>
+                <button class="btn-icon">👤 Konto</button>
                 <button class="btn-icon-cart" onclick="openCartModal()">🛒 Koszyk (0)</button>
-                <button class="btn-icon" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
+                <button class="btn-icon" id="themeToggle" onclick="toggleDarkMode()" aria-label="Przełącz tryb ciemny">🌙</button>
             </div>
         </div>
     </div>
@@ -46,79 +46,77 @@
     </div>
 
     <div class="wrapper-gitary">
+        <div class="container">
+            <h1 class="section-title">🎸 Nasze Instrumenty Muzyczne</h1>
 
-    <div class="container">
-        <h1 class="section-title">🎸 Nasze Instrumenty Muzyczne</h1>
+            <div class="products-grid">
 
-        <div class="products-grid">
-
-            <a href="gitary-klasyczne.html?product=1" class="product-card-link">
-            <div class="product-card" data-id="p1">
-                <div class="product-image-container"><img src="images/yamaha_c40.jpg"><div class="badge">Popularne</div></div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Yamaha C40</div>
-                        <div class="product-description">Idealna dla początkujących.</div>
-                    </div>
+                <div class="product-card" data-id="p1">
+                    <a href="gitary-klasyczne.html?product=1" class="product-card-link">
+                        <div class="product-image-container">
+                            <img src="images/yamaha_c40.jpg" alt="Gitara klasyczna Yamaha C40" width="200" height="200" loading="lazy">
+                            <div class="badge">Popularne</div>
+                        </div>
+                        <div class="product-info-top">
+                            <div class="product-name">Yamaha C40</div>
+                            <div class="product-description">Idealna dla początkujących.</div>
+                        </div>
+                    </a>
                     <div class="product-footer">
                         <span class="product-price">649 zł</span>
                         <button class="btn-add">Dodaj do koszyka</button>
                     </div>
                 </div>
-            </div>
-            </a>
 
-            <a href="gitary-elektryczne.html?product=1" class="product-card-link">
-            <div class="product-card" data-id="p2">
-                <div class="product-image-container"><img src="images/telecaster_fender.jpg"></div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Telecaster Standard</div>
-                        <div class="product-description">Doskonała dla zaawansowanych graczy.</div>
-                    </div>
+                <div class="product-card" data-id="p2">
+                    <a href="gitary-elektryczne.html?product=1" class="product-card-link">
+                        <div class="product-image-container">
+                            <img src="images/telecaster_fender.jpg" alt="Gitara elektryczna Telecaster Standard" width="200" height="200" loading="lazy">
+                        </div>
+                        <div class="product-info-top">
+                            <div class="product-name">Telecaster Standard</div>
+                            <div class="product-description">Doskonała dla zaawansowanych graczy.</div>
+                        </div>
+                    </a>
                     <div class="product-footer">
                         <span class="product-price">2499 zł</span>
                         <button class="btn-add">Dodaj do koszyka</button>
                     </div>
                 </div>
-            </div>
-            </a>
 
-    <a href="fortepiany.html?product=1" class="product-card-link">
-    <div class="product-card" data-id="p3">
-        <div class="product-image-container"><img src="images/yamaha-gb1k-pe.jpg"></div>
-        <div class="product-info">
-            <div>
-                <div class="product-name">Yamaha GB1K PE</div>
-                <div class="product-description">Świetny fortepian.</div>
-            </div>
-            <div class="product-footer">
-                <span class="product-price">52 000 zł</span>
-                <button class="btn-add">Dodaj do koszyka</button>
-            </div>
-        </div>
-    </div>
-    </a>
-
-            <a href="keyboardy.html?product=1"class="product-card-link">
-             <div class="product-card" data-id="p4">
-                <div class="product-image-container"><img src="images/yamaha-psr-e283.jpg"></div>
-                <div class="product-info">
-                    <div>
-                        <div class="product-name">Yamaha PSR E283</div>
-                        <div class="product-description">Świetny keyboard dla amatorów.</div>
+                <div class="product-card" data-id="p3">
+                    <a href="fortepiany.html?product=1" class="product-card-link">
+                        <div class="product-image-container">
+                            <img src="images/yamaha-gb1k-pe.jpg" alt="Fortepian Yamaha GB1K PE" width="200" height="200" loading="lazy">
+                        </div>
+                        <div class="product-info-top">
+                            <div class="product-name">Yamaha GB1K PE</div>
+                            <div class="product-description">Świetny fortepian.</div>
+                        </div>
+                    </a>
+                    <div class="product-footer">
+                        <span class="product-price">52 000 zł</span>
+                        <button class="btn-add">Dodaj do koszyka</button>
                     </div>
+                </div>
+
+                <div class="product-card" data-id="p4">
+                    <a href="keyboardy.html?product=1" class="product-card-link">
+                        <div class="product-image-container">
+                            <img src="images/yamaha-psr-e283.jpg" alt="Keyboard Yamaha PSR E283" width="200" height="200" loading="lazy">
+                        </div>
+                        <div class="product-info-top">
+                            <div class="product-name">Yamaha PSR E283</div>
+                            <div class="product-description">Świetny keyboard dla amatorów.</div>
+                        </div>
+                    </a>
                     <div class="product-footer">
                         <span class="product-price">550 zł</span>
                         <button class="btn-add">Dodaj do koszyka</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    </a>
 
-    <div id="cartModal" class="modal">
+            </div> </div> </div> <div id="cartModal" class="modal">
         <div class="modal-content" style="max-width: 700px;">
             <span class="close-btn" onclick="closeCartModal()">&times;</span>
             <h2 class="section-title" style="font-size: 24px;">Twój Koszyk</h2>
@@ -134,8 +132,6 @@
         </div>
     </div>
 
-    </div>
-
     <div class="footer">
         <p class="footer-text">© 2025 MuzycznyShop.</p>
     </div>
@@ -146,14 +142,18 @@
         // Obsługa przycisków "Dodaj do koszyka" na stronie głównej
         document.querySelectorAll('.btn-add').forEach(btn => {
             btn.addEventListener('click', function (e) {
-                e.preventDefault();
+                e.preventDefault(); // Zapobiega przeładowaniu, chociaż button jest teraz poza <a>
+                
                 const card = this.closest('.product-card');
 
                 const id = card.getAttribute('data-id');
                 const name = card.querySelector('.product-name').innerText;
                 const priceText = card.querySelector('.product-price').innerText;
                 const price = parseFloat(priceText.replace(' zł', '').replace(' ', ''));
-                const image = card.querySelector('.product-image-container').innerText.split('\n')[0]; // Pobiera emoji
+                
+                // POPRAWKA JS: Teraz pobieramy 'src' obrazka, a nie innerText (bo to nie jest już emoji)
+                const imgElement = card.querySelector('.product-image-container img');
+                const image = imgElement ? imgElement.src : 'images/placeholder.jpg'; 
 
                 // Wywołanie funkcji z cart.js
                 addToCartGlobal(id, name, price, image);
