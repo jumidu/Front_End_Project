@@ -22,8 +22,25 @@ function removeFromCart(index) {
 
 // --- UI MODAL ---
 function updateCartIcon() {
-    const btn = document.querySelector('.btn-icon-cart') || document.querySelector('.nav-buttons .btn-icon');
-    if (btn) btn.innerHTML = `🛒 Koszyk (${cart.length})`;
+    // 1. Pobieramy wszystkie elementy o tej klasie (np. w menu mobilnym i zwykłym)
+    const btns = document.querySelectorAll('.btn-icon-cart');
+
+    // 2. Sprawdzamy, czy w ogóle jakieś znaleziono
+    if (btns.length === 0) {
+        console.warn("Błąd: Nie znaleziono elementu o klasie .btn-icon-cart w HTML!");
+        return;
+    }
+
+    // 3. Aktualizujemy każdy znaleziony przycisk
+    btns.forEach(btn => {
+        // Opcja A: Jeśli w przycisku jest tylko tekst
+        btn.innerHTML = `🛒 Koszyk (${cart.length})`;
+        
+        // Opcja B (Lepsza): Jeśli masz np. <span id="cart-count"></span> wewnątrz przycisku
+        // Wtedy zamiast btn.innerHTML użyj:
+        // const counter = btn.querySelector('span');
+        // if(counter) counter.innerText = cart.length;
+    });
 }
 
 function openCartModal() {
